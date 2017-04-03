@@ -2,6 +2,7 @@ package Main;
 
 /**
  * Created by Aaron on 2-4-2017.
+ * .gitignore has been instructed to ignore certain files.
  * This file will act as the Main file, we will call all code from this file.
  */
 public class Main {
