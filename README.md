@@ -3,9 +3,9 @@
 Dit is de repository van: 
 Groep <nummer> - INF1H - Project 3 
 
-Leden:
-Aaron Beetstra - Dev team
-Ralph Verburg - Dev team
-Mark Stout - Dev team
-Selim Aydi - Dev team
-Ryan Wilson - Scrum Master
+Leden:<br/>
+Aaron Beetstra - Dev team<br/>
+Ralph Verburg - Dev team<br/>
+Mark Stout - Dev team<br/>
+Selim Aydi - Dev team<br/>
+Ryan Wilson - Scrum Master<br/>
