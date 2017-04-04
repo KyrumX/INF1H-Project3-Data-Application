@@ -11,7 +11,6 @@ import javafx.stage.Stage;
  * Created by Aaron on 2-4-2017.
  * .gitignore has been instructed to ignore certain files.
  * This file will act as the Main file, we will call all code from this file.
- * I am teaching you how to merge 101.
  */
 
 public class Main extends Application {
@@ -24,6 +23,9 @@ public class Main extends Application {
         System.out.println("Data application version " + versionNumber + " successfully launched!");
     }
 
+    protected void loadFiles() {
+        //Hier laden we alle files zoals afbeeldingen;
+    }
 
     @Override
     public void start(Stage primaryStage) {
