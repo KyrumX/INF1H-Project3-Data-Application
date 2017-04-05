@@ -1,0 +1,23 @@
+.root {
+    -fx-background: linear-gradient(to right, #426fc2 , #00b2ff);
+    -fx-border-radius: 5px;
+}
+
+.button {
+    -fx-background-color: whitesmoke;
+}
+
+.button:hover {
+    -fx-background-color: #4CAF50;
+}
+
+.exitButton:hover {
+    -fx-background-color: rgb(235, 94, 84);
+}
+
+.label{
+    -fx-text-fill: white;
+    -fx-font-size: 45px;
+
+
+}

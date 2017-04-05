@@ -1,11 +1,13 @@
 package Main;
 
+import Effects.Shadoweffect;
 import Events.MouseEvents;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -42,8 +44,12 @@ public class Main extends Application {
         //Hernoemen van primaryStage naar window, zodat het duidelijker is;
         window = primaryStage;
 
+        Shadoweffect headshadow = new Shadoweffect(0.5);
+        Shadoweffect buttonshadow = new Shadoweffect(0.5);
+
         Label label1 = new Label("Kappameisters");
-        label1.setTranslateY(-55);
+        label1.setTranslateY(-85);
+        label1.setEffect(headshadow.getShadow());
         //De titel van de window, staat linksbovenin;
         window.setTitle("Data Application");
 
@@ -55,10 +61,13 @@ public class Main extends Application {
         exitButton.setOnAction(new MouseEvents());
         exitButton.setTranslateX(0);
         exitButton.setTranslateY(40);
+        exitButton.setEffect(buttonshadow.getShadow());
+        exitButton.getStyleClass().add("exitButton");
 
         startButton = new Button();
         startButton.setText("Launch");
         startButton.setOnAction(new MouseEvents());
+        startButton.setEffect(buttonshadow.getShadow());
 
         backButton = new Button();
         backButton.setText("Back");
@@ -74,8 +83,11 @@ public class Main extends Application {
 
         scene1 = new Scene(mainMenu, 300, 250);
         scene2 = new Scene(mainScreen, 300, 250);
+        scene1.getStylesheets().add("Main/style.css");
+        scene2.getStylesheets().add("Main/style.css");
         window.setScene(scene1);
         window.show();
+
 
     }
 
