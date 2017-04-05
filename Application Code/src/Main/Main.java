@@ -4,6 +4,8 @@ import Events.MouseEvents;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -15,8 +17,10 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     public static double versionNumber = 1.0;
-    public static Button exitButton;
-    public Stage window;
+    public static Button exitButton, startButton, backButton;
+    public static Stage window;
+    public static Scene scene1, scene2;
+    public static boolean menuState;
 
     //Bepalen van de State van het programma;
     private enum StateL{
@@ -38,6 +42,8 @@ public class Main extends Application {
         //Hernoemen van primaryStage naar window, zodat het duidelijker is;
         window = primaryStage;
 
+        Label label1 = new Label("Kappameisters");
+        label1.setTranslateY(-55);
         //De titel van de window, staat linksbovenin;
         window.setTitle("Data Application");
 
@@ -47,18 +53,31 @@ public class Main extends Application {
         exitButton.setText("Exit");
         //Plek waar de button zijn actie zoekt;
         exitButton.setOnAction(new MouseEvents());
+        exitButton.setTranslateX(0);
+        exitButton.setTranslateY(40);
+
+        startButton = new Button();
+        startButton.setText("Launch");
+        startButton.setOnAction(new MouseEvents());
+
+        backButton = new Button();
+        backButton.setText("Back");
+        backButton.setOnAction(e -> window.setScene(scene1));
+
+
 
         //Layout is nu StackPane, later vervangen zodat we zelf coordinaten kunnen zetten;
         StackPane mainMenu = new StackPane();
-        mainMenu.getChildren().add(exitButton);
-        Scene scene = new Scene(mainMenu, 1920, 1080);
-        window.setScene(scene);
+        StackPane mainScreen = new StackPane();
+        mainMenu.getChildren().addAll(exitButton, startButton, label1);
+        mainScreen.getChildren().add(backButton);
+
+        scene1 = new Scene(mainMenu, 300, 250);
+        scene2 = new Scene(mainScreen, 300, 250);
+        window.setScene(scene1);
         window.show();
+
     }
-
-
-
-
 
 
     //Hier runnen we het programma;
