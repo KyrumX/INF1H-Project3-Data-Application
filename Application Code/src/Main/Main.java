@@ -11,7 +11,6 @@ import javafx.stage.Stage;
  * Created by Aaron on 2-4-2017.
  * .gitignore has been instructed to ignore certain files.
  * This file will act as the Main file, we will call all code from this file.
- * I am teaching you how to merge 101.
  */
 
 public class Main extends Application {
@@ -19,11 +18,20 @@ public class Main extends Application {
     public static Button exitButton;
     public Stage window;
 
-    public static void main(String[] args) {
-        launch(args);
-        System.out.println("Data application version " + versionNumber + " successfully launched!");
+    //Bepalen van de State van het programma;
+    private enum StateL{
+        MENU
     }
 
+    private StateL State = StateL.MENU;
+
+
+    //Methodes:
+
+    //Deze methode laadt alle nodige files;
+    protected void loadFiles() {
+        //Hier laden we alle files zoals afbeeldingen;
+    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -41,11 +49,22 @@ public class Main extends Application {
         exitButton.setOnAction(new MouseEvents());
 
         //Layout is nu StackPane, later vervangen zodat we zelf coordinaten kunnen zetten;
-        StackPane layout = new StackPane();
-        layout.getChildren().add(exitButton);
-        Scene scene = new Scene(layout, 1920, 1080);
+        StackPane mainMenu = new StackPane();
+        mainMenu.getChildren().add(exitButton);
+        Scene scene = new Scene(mainMenu, 1920, 1080);
         window.setScene(scene);
         window.show();
+    }
+
+
+
+
+
+
+    //Hier runnen we het programma;
+    public static void main(String[] args) {
+        launch(args);
+        System.out.println("Data application version " + versionNumber + " successfully launched!");
     }
 
 }
