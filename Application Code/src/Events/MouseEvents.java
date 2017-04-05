@@ -12,9 +12,15 @@ public class MouseEvents implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
-        if(event.getSource().equals(Main.exitButton)) {
+        if (event.getSource().equals(Main.exitButton)) {
             System.out.println("Applicatie wordt afgesloten...");
-            System.exit(1);
+            Main.window.close();
+        } else if (event.getSource().equals(Main.startButton)) {
+            Main.window.setScene(Main.scene2);
+
+
         }
     }
 }
+
+
