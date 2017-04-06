@@ -17,7 +17,25 @@
 
 .label{
     -fx-text-fill: white;
-    -fx-font-size: 45px;
+    -fx-font-size: 45px
+}
 
+.choice-box {
+    -fx-background-color: #ca5249;
+    -fx-border-radius: 5px;
+    -fx-padding: 1px;
 
+}
+
+.choice-box .label{
+    -fx-font-size: 20px;
+}
+
+.choice-box .menu-item{
+    -fx-background-color: #5fba7d;
+    -fx-border-radius: 0px;
+}
+
+.choice-box .menu-item:focused{
+    -fx-background-color: #ca5249;
 }

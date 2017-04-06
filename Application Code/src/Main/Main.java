@@ -15,7 +15,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import static javax.swing.text.html.HTML.Tag.HEAD;
 
 /**
  * Created by Aaron on 2-4-2017.
@@ -65,14 +68,16 @@ public class Main extends Application {
         StackPane mainMenu = new StackPane();
         mainMenu.getChildren().addAll(exitButton.getButton(), startButton.getButton(), label1);
         scene1 = new Scene(mainMenu, 720, 576);
+        
+        //topmenu with year choicebox
+        HBox topMenu = new HBox(279);
 
-
-        //Topmenu met jaar choicebox
-        HBox topMenu = new HBox();
         ChoiceBox <String> ChoiceYear = new ChoiceBox<>();
         AbstractButtonClass A = new GeneralButton(0,0,"Go", e -> MouseEvents.getChoice(ChoiceYear), false);
         ChoiceYear.getItems().addAll("2012", "2013", "2014");
         ChoiceYear.setValue("2012");
+        ChoiceYear.setEffect(new Shadoweffect(0.5).getShadow());
+
         topMenu.getChildren().addAll(backButton.getButton(), ChoiceYear, A.getButton());
 
 
