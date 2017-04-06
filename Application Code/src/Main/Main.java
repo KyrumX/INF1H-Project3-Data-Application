@@ -1,5 +1,6 @@
 package Main;
 
+import Events.*;
 import Buttons.AbstractButtonClass;
 import Buttons.GeneralButton;
 import Effects.Shadoweffect;
@@ -10,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -65,10 +67,10 @@ public class Main extends Application {
         scene1 = new Scene(mainMenu, 720, 576);
 
 
-        //topmenu with year choicebox
+        //Topmenu met jaar choicebox
         HBox topMenu = new HBox();
         ChoiceBox <String> ChoiceYear = new ChoiceBox<>();
-        AbstractButtonClass A = new GeneralButton(0,0,"Go", e -> getChoice(ChoiceYear), false);
+        AbstractButtonClass A = new GeneralButton(0,0,"Go", e -> MouseEvents.getChoice(ChoiceYear), false);
         ChoiceYear.getItems().addAll("2012", "2013", "2014");
         ChoiceYear.setValue("2012");
         topMenu.getChildren().addAll(backButton.getButton(), ChoiceYear, A.getButton());
@@ -82,22 +84,18 @@ public class Main extends Application {
         scene1.getStylesheets().add("Main/style.css");
         scene2.getStylesheets().add("Main/style.css");
         window.setScene(scene1);
-//      window.setFullScreen(true);
-        window.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH); // haalt de "press escape to exit" message weg
+        //      window.setFullScreen(true);
+
+        //Haalt de "press escape to exit" message weg
+        window.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         window.show();
     }
-
-    private void getChoice(ChoiceBox <String> ChoiceYear){
-        String choice = ChoiceYear.getValue();
-        System.out.println(choice);
-    }
-
 
 
     //Hier runnen we het programma;
     public static void main(String[] args) {
-        launch(args);
         System.out.println("Data application version " + versionNumber + " successfully launched!");
+        launch(args);
     }
 
 }
