@@ -11,7 +11,7 @@ import javafx.scene.Group;
 /**
  * Created by aaron on 5-4-2017.
  */
-public class TestGraphs extends Application {
+public class TrialGraph extends Application {
 
     @Override public void start(Stage stage) {
         Scene scene = new Scene(new Group());

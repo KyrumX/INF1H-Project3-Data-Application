@@ -18,7 +18,6 @@ public class MouseEvents implements EventHandler<ActionEvent> {
         } else if (event.getSource().equals(Main.startButton)) {
             Main.window.setScene(Main.scene2);
 
-
         }
     }
 }
