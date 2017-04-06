@@ -4,10 +4,14 @@ import Buttons.AbstractButtonClass;
 import Buttons.GeneralButton;
 import Effects.Shadoweffect;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -58,21 +62,37 @@ public class Main extends Application {
         //Layout is nu StackPane, later vervangen zodat we zelf coordinaten kunnen zetten;
         StackPane mainMenu = new StackPane();
         mainMenu.getChildren().addAll(exitButton.getButton(), startButton.getButton(), label1);
-        scene1 = new Scene(mainMenu, 1920, 1080);
+        scene1 = new Scene(mainMenu, 720, 576);
 
-        StackPane mainScreen = new StackPane();
-        mainScreen.getChildren().add(backButton.getButton());
-        scene2 = new Scene(mainScreen, 1920, 1080);
+
+        //topmenu with year choicebox
+        HBox topMenu = new HBox();
+        ChoiceBox <String> ChoiceYear = new ChoiceBox<>();
+        AbstractButtonClass A = new GeneralButton(0,0,"Go", e -> getChoice(ChoiceYear), false);
+        ChoiceYear.getItems().addAll("2012", "2013", "2014");
+        ChoiceYear.setValue("2012");
+        topMenu.getChildren().addAll(backButton.getButton(), ChoiceYear, A.getButton());
+
+
+        BorderPane mainScreen = new BorderPane();
+        mainScreen.setTop(topMenu);
+        scene2 = new Scene(mainScreen, 720, 576);
 
 
         scene1.getStylesheets().add("Main/style.css");
         scene2.getStylesheets().add("Main/style.css");
         window.setScene(scene1);
-        window.setFullScreen(true);
+//      window.setFullScreen(true);
         window.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH); // haalt de "press escape to exit" message weg
         window.show();
-
     }
+
+    private void getChoice(ChoiceBox <String> ChoiceYear){
+        String choice = ChoiceYear.getValue();
+        System.out.println(choice);
+    }
+
+
 
     //Hier runnen we het programma;
     public static void main(String[] args) {
