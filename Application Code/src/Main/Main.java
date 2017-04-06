@@ -68,7 +68,7 @@ public class Main extends Application {
         StackPane mainMenu = new StackPane();
         mainMenu.getChildren().addAll(exitButton.getButton(), startButton.getButton(), label1);
         scene1 = new Scene(mainMenu, 720, 576);
-        
+
         //topmenu with year choicebox
         HBox topMenu = new HBox(279);
 
