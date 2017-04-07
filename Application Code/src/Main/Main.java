@@ -5,20 +5,15 @@ import Buttons.AbstractButtonClass;
 import Buttons.GeneralButton;
 import Effects.Shadoweffect;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import static javax.swing.text.html.HTML.Tag.HEAD;
 
 /**
  * Created by Aaron on 2-4-2017.
@@ -30,7 +25,7 @@ public class Main extends Application {
     public static double versionNumber = 1.0;
     public static Button exitButton, startButton, backButton;
     public static Stage window;
-    public static Scene scene1, scene2;
+    public static Scene mainScene, carTheftScene;
     public static boolean menuState;
 
     //Bepalen van de State van het programma;
@@ -60,14 +55,14 @@ public class Main extends Application {
         //De titel van de window, staat linksbovenin;
         window.setTitle("Data Application");
 
-        AbstractButtonClass startButton = new GeneralButton(0, 0, "Start", e -> Main.window.setScene(Main.scene2), false);
+        AbstractButtonClass startButton = new GeneralButton(0, 0, "Start", e -> Main.window.setScene(Main.carTheftScene), false);
         AbstractButtonClass exitButton = new GeneralButton(0, 40, "Exit", e -> {System.out.println("Applicatie wordt afgesloten...");Main.window.close();}, true);
-        AbstractButtonClass backButton = new GeneralButton(0, 0, "Back", e -> window.setScene(scene1), true);
+        AbstractButtonClass backButton = new GeneralButton(0, 0, "Back", e -> window.setScene(mainScene), true);
 
         //Layout is nu StackPane, later vervangen zodat we zelf coordinaten kunnen zetten;
         StackPane mainMenu = new StackPane();
         mainMenu.getChildren().addAll(exitButton.getButton(), startButton.getButton(), label1);
-        scene1 = new Scene(mainMenu, 720, 576);
+        mainScene = new Scene(mainMenu, 720, 576);
 
         //topmenu with year choicebox
         HBox topMenu = new HBox(279);
@@ -83,12 +78,12 @@ public class Main extends Application {
 
         BorderPane mainScreen = new BorderPane();
         mainScreen.setTop(topMenu);
-        scene2 = new Scene(mainScreen, 720, 576);
+        carTheftScene = new Scene(mainScreen, 720, 576);
 
 
-        scene1.getStylesheets().add("Main/style.css");
-        scene2.getStylesheets().add("Main/style.css");
-        window.setScene(scene1);
+        mainScene.getStylesheets().add("Styling/mainStyle.css");
+        carTheftScene.getStylesheets().add("Styling/mainStyle.css");
+        window.setScene(mainScene);
         //      window.setFullScreen(true);
 
         //Haalt de "press escape to exit" message weg
