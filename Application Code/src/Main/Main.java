@@ -4,6 +4,7 @@ import Events.*;
 import Buttons.AbstractButtonClass;
 import Buttons.GeneralButton;
 import Effects.Shadoweffect;
+import Graphs.Graph;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -14,6 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import javax.tools.Tool;
+import java.util.HashMap;
 
 /**
  * Created by Aaron on 2-4-2017.
@@ -78,7 +80,16 @@ public class Main extends Application {
 
         BorderPane mainScreen = new BorderPane();
         mainScreen.setTop(menubar);
-        mainScreen.setBottom(cb1);
+
+        //Graph trials
+        HashMap<String, Double> myFriends = new HashMap<String, Double>();
+
+        myFriends.put("Mark", 50.0);
+        myFriends.put("Cassandra", 25.0);
+        myFriends.put("Zenas", 25.0);
+        Graph g = new Graph(myFriends);
+        mainScreen.setCenter(g.getGraph());
+        //Einde Graph trials
 
         carTheftScene = new Scene(mainScreen, 720, 576);
 
