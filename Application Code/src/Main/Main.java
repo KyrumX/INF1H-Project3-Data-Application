@@ -6,14 +6,14 @@ import Buttons.GeneralButton;
 import Effects.Shadoweffect;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import javax.tools.Tool;
 
 /**
  * Created by Aaron on 2-4-2017.
@@ -49,7 +49,7 @@ public class Main extends Application {
 
         Shadoweffect headshadow = new Shadoweffect(0.5);
 
-        Label label1 = new Label("Kappameisters");
+        Label label1 = new Label("DATA APPLICATION");
         label1.setTranslateY(-85);
         label1.setEffect(headshadow.getShadow());
         //De titel van de window, staat linksbovenin;
@@ -59,27 +59,28 @@ public class Main extends Application {
         AbstractButtonClass exitButton = new GeneralButton(0, 40, "Exit", e -> {System.out.println("Applicatie wordt afgesloten...");Main.window.close();}, true);
         AbstractButtonClass backButton = new GeneralButton(0, 0, "Back", e -> window.setScene(mainScene), true);
 
-        //Layout is nu StackPane, later vervangen zodat we zelf coordinaten kunnen zetten;
+        //mainMenu is nu StackPane, later vervangen zodat we zelf coordinaten kunnen zetten;
         StackPane mainMenu = new StackPane();
         mainMenu.getChildren().addAll(exitButton.getButton(), startButton.getButton(), label1);
         mainScene = new Scene(mainMenu, 720, 576);
 
-        //topmenu with year choicebox
-        HBox topMenu = new HBox(279);
-
+//        Toolbar top with year choicebox, buttons, checkboxes
         ChoiceBox <String> ChoiceYear = new ChoiceBox<>();
-        AbstractButtonClass A = new GeneralButton(0,0,"Go", e -> MouseEvents.getChoice(ChoiceYear), false);
+        AbstractButtonClass goButton = new GeneralButton(0,0,"Go", e -> MouseEvents.getChoice(ChoiceYear), false);
         ChoiceYear.getItems().addAll("2012", "2013", "2014");
         ChoiceYear.setValue("2012");
+        CheckBox cb1 = new CheckBox("First");
+        cb1.setSelected(true);
         ChoiceYear.setEffect(new Shadoweffect(0.5).getShadow());
 
-        topMenu.getChildren().addAll(backButton.getButton(), ChoiceYear, A.getButton());
-
+        ToolBar menubar = new ToolBar();
+        menubar.getItems().addAll(ChoiceYear, goButton.getButton(), backButton.getButton(), cb1);
 
         BorderPane mainScreen = new BorderPane();
-        mainScreen.setTop(topMenu);
-        carTheftScene = new Scene(mainScreen, 720, 576);
+        mainScreen.setTop(menubar);
+        mainScreen.setBottom(cb1);
 
+        carTheftScene = new Scene(mainScreen, 720, 576);
 
         mainScene.getStylesheets().add("Styling/mainStyle.css");
         carTheftScene.getStylesheets().add("Styling/mainStyle.css");
