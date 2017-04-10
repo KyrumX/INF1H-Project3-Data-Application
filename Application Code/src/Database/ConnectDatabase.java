@@ -1,16 +1,16 @@
 package Database;
 
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.HashMap;
 
 /**
  * Created by aaron on 5-4-2017.
  */
 public class ConnectDatabase {
-    private final String url = "jdbc:postgresql://localhost/project2";
+    private final String url = "jdbc:postgresql://localhost/Project3";
     private final String user = "postgres";
     private final String password = "kaas123";
+    private Connection conn;
 
     public Connection connect() {
         Connection conn = null;
@@ -21,11 +21,29 @@ public class ConnectDatabase {
             System.out.println(exception.getMessage());
         }
 
+        this.conn = conn;
         return conn;
     }
 
-    public static void main(String[] args) {
-        ConnectDatabase trial = new ConnectDatabase();
-        trial.connect();
+    public HashMap getGarages() {
+        HashMap<String, Double> newHashMap = new HashMap<String, Double>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs;
+
+            rs = stmt.executeQuery("SELECT deelgemeente, COUNT(garagenaam) FROM garages GROUP BY deelgemeente");
+            while ( rs.next() ) {
+                String deelGemeenteNaam = rs.getString("deelgemeente");
+                double garageNaamCount = rs.getDouble("COUNT");
+                System.out.print(garageNaamCount + " ");
+                System.out.println(deelGemeenteNaam);
+                newHashMap.put(deelGemeenteNaam, garageNaamCount);
+            }
+            conn.close();
+        } catch (Exception e) {
+            System.err.println("Got an exception!");
+            System.err.println(e.getMessage());
+        }
+        return newHashMap;
     }
 }
