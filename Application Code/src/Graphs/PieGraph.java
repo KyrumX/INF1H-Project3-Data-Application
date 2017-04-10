@@ -1,5 +1,6 @@
 package Graphs;
 
+import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,15 +11,18 @@ import java.util.Map;
 public class PieGraph {
     public PieChart chart;
 
-    public PieGraph(HashMap<String, Double> chartData) {
+    public PieGraph(HashMap<String, Double> chartData, String titel) {
 
         PieChart pieChart = new PieChart();
+        pieChart.setTitle(titel);
 
         for (Map.Entry<String, Double> entry : chartData.entrySet()) {
             pieChart.getData().add(new PieChart.Data(entry.getKey(), entry.getValue()));
 
-        this.chart = pieChart;
         }
+        pieChart.setLabelLineLength(10);
+        pieChart.setLegendSide(Side.LEFT);
+        this.chart = pieChart;
     }
 
     public PieChart getGraph() {

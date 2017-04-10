@@ -8,6 +8,7 @@ import Graphs.BarGraph;
 import Graphs.PieGraph;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
@@ -86,7 +87,7 @@ public class Main extends Application {
         myFriends.put("2007", 50.0);
         myFriends.put("2008", 25.0);
         myFriends.put("2009", 25.0);
-        BarGraph g = new BarGraph(myFriends, "Centrum");
+        PieGraph g = new PieGraph(myFriends, "Garages per deelgemeenten");
         mainScreen.setCenter(g.getGraph());
         //Einde PieGraph trials
 

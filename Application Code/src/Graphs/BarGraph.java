@@ -1,5 +1,6 @@
 package Graphs;
 
+import javafx.geometry.Side;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
@@ -29,6 +30,7 @@ public class BarGraph {
             series.getData().add(new XYChart.Data("", chartData.get(item)));
             barGraph.getData().addAll(series);
         }
+        barGraph.setLegendSide(Side.LEFT);
         chart = barGraph;
 
 
