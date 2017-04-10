@@ -7,10 +7,10 @@ import java.util.Map;
 /**
  * Created by aaron on 7-4-2017.
  */
-public class Graph {
+public class PieGraph {
     public PieChart chart;
 
-    public Graph(HashMap<String, Double> chartData) {
+    public PieGraph(HashMap<String, Double> chartData) {
 
         PieChart pieChart = new PieChart();
 

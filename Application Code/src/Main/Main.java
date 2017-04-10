@@ -4,17 +4,16 @@ import Events.*;
 import Buttons.AbstractButtonClass;
 import Buttons.GeneralButton;
 import Effects.Shadoweffect;
-import Graphs.Graph;
+import Graphs.BarGraph;
+import Graphs.PieGraph;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import javax.tools.Tool;
 import java.util.HashMap;
 
 /**
@@ -81,15 +80,15 @@ public class Main extends Application {
         BorderPane mainScreen = new BorderPane();
         mainScreen.setTop(menubar);
 
-        //Graph trials
+        //PieGraph trials
         HashMap<String, Double> myFriends = new HashMap<String, Double>();
 
-        myFriends.put("Mark", 50.0);
-        myFriends.put("Cassandra", 25.0);
-        myFriends.put("Zenas", 25.0);
-        Graph g = new Graph(myFriends);
+        myFriends.put("2007", 50.0);
+        myFriends.put("2008", 25.0);
+        myFriends.put("2009", 25.0);
+        BarGraph g = new BarGraph(myFriends, "Centrum");
         mainScreen.setCenter(g.getGraph());
-        //Einde Graph trials
+        //Einde PieGraph trials
 
         carTheftScene = new Scene(mainScreen, 720, 576);
 
