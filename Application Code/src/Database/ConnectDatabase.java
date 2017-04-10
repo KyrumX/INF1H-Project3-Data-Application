@@ -35,8 +35,6 @@ public class ConnectDatabase {
             while ( rs.next() ) {
                 String deelGemeenteNaam = rs.getString("deelgemeente");
                 double garageNaamCount = rs.getDouble("COUNT");
-                System.out.print(garageNaamCount + " ");
-                System.out.println(deelGemeenteNaam);
                 newHashMap.put(deelGemeenteNaam, garageNaamCount);
             }
             conn.close();

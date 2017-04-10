@@ -1,5 +1,6 @@
 package Events;
 
+import Database.ConnectDatabase;
 import Graphs.PieGraph;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -26,14 +27,17 @@ public class MouseEvents implements EventHandler<ActionEvent> {
     public static void getChoice(ChoiceBox<String> ChoiceYear){
         //PieGraph trials
         ChoiceYear.getSelectionModel().select(0);{
-
-            HashMap<String, Double> myFriends = new HashMap<String, Double>();
-
-            myFriends.put("2007", 50.0);
-            myFriends.put("2008", 25.0);
-            myFriends.put("2009", 25.0);
-            PieGraph g = new PieGraph(myFriends, "Garages per deelgemeenten");
+            ConnectDatabase mainDataBase = new ConnectDatabase();
+            mainDataBase.connect();
+            PieGraph g = new PieGraph(mainDataBase.getGarages(), "Garages per deelgemeenten");
             Main.mainScreen.setCenter(g.getGraph());
+//            HashMap<String, Double> myFriends = new HashMap<String, Double>();
+//
+//            myFriends.put("2007", 50.0);
+//            myFriends.put("2008", 25.0);
+//            myFriends.put("2009", 25.0);
+//            PieGraph g = new PieGraph(myFriends, "Garages per deelgemeenten");
+//            Main.mainScreen.setCenter(g.getGraph());
         }
     }
 }
