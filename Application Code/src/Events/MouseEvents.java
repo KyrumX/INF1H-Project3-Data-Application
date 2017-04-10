@@ -1,9 +1,12 @@
 package Events;
 
+import Graphs.PieGraph;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import Main.Main;
 import javafx.scene.control.ChoiceBox;
+
+import java.util.HashMap;
 
 /**
  * Created by aaron on 4-4-2017.
@@ -21,8 +24,17 @@ public class MouseEvents implements EventHandler<ActionEvent> {
 //        }
     }
     public static void getChoice(ChoiceBox<String> ChoiceYear){
-        String choice = ChoiceYear.getValue();
-        System.out.println(choice);
+        //PieGraph trials
+        ChoiceYear.getSelectionModel().select(0);{
+
+            HashMap<String, Double> myFriends = new HashMap<String, Double>();
+
+            myFriends.put("2007", 50.0);
+            myFriends.put("2008", 25.0);
+            myFriends.put("2009", 25.0);
+            PieGraph g = new PieGraph(myFriends, "Garages per deelgemeenten");
+            Main.mainScreen.setCenter(g.getGraph());
+        }
     }
 }
 
