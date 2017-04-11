@@ -73,10 +73,11 @@ public class Main extends Application {
         AbstractButtonClass chooseGarage = new GeneralButton(0, -40, "Garage", null, false);
 
         StackPane chooseScreen = new StackPane();
+        chooseScreen.setId("choosescreen");
         chooseScreen.getChildren().addAll(backButton1.getButton(), chooseCarTheft.getButton(), chooseGarage.getButton());
-
+        chooseScreen.getStylesheets().add("Styling/mainStyle.css");
         chooseScene = new Scene(chooseScreen, 720, 576);
-
+        chooseScene.getStylesheets().add("Styling/mainStyle.css");
 
 //        Toolbar top with year choicebox, buttons, checkboxes
         ChoiceBox <String> ChoiceYear = new ChoiceBox<>();
