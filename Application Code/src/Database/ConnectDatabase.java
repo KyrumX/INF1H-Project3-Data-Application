@@ -51,11 +51,12 @@ public class ConnectDatabase {
             Statement stmt = conn.createStatement();
             ResultSet rs;
 
-            rs = stmt.executeQuery("SELECT deelgemeente, COUNT(garagenaam) FROM garages GROUP BY deelgemeente");
+            rs = stmt.executeQuery("SELECT deelgemeente, percentagediefstal FROM autodiefstal WHERE = " + year);
             while ( rs.next() ) {
                 String deelGemeenteNaam = rs.getString("deelgemeente");
-                double garageNaamCount = rs.getDouble("COUNT");
-                newHashMap.put(deelGemeenteNaam, garageNaamCount);
+                double deelPercentage = rs.getDouble("percentagediefstal");
+                System.out.print(deelGemeenteNaam + " ");
+                System.out.println(deelPercentage);
             }
             conn.close();
         } catch (Exception e) {
