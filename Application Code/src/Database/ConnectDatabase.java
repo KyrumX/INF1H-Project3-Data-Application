@@ -44,4 +44,24 @@ public class ConnectDatabase {
         }
         return newHashMap;
     }
+
+    public HashMap getTheftYear(int year) {
+        HashMap<String, Double> newHashMap = new HashMap<String, Double>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs;
+
+            rs = stmt.executeQuery("SELECT deelgemeente, COUNT(garagenaam) FROM garages GROUP BY deelgemeente");
+            while ( rs.next() ) {
+                String deelGemeenteNaam = rs.getString("deelgemeente");
+                double garageNaamCount = rs.getDouble("COUNT");
+                newHashMap.put(deelGemeenteNaam, garageNaamCount);
+            }
+            conn.close();
+        } catch (Exception e) {
+            System.err.println("Got an exception!");
+            System.err.println(e.getMessage());
+        }
+        return newHashMap;
+    }
 }
