@@ -6,7 +6,7 @@ Create Table Garages(
 	primary key(GarageNaam)
     );
 	
-Create Table Aurodiefstal(
+Create Table Autodiefstal(
 	DeelGemeente		varchar(60),
 	PercentageDiefstal	int,
 	Jaar				int,
