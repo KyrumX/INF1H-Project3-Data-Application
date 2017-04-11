@@ -28,10 +28,10 @@ public class MouseEvents implements EventHandler<ActionEvent> {
     public static void getChoice(ChoiceBox<String> ChoiceYear){
         //PieGraph trials
         ChoiceYear.getSelectionModel().select(0);{
-            ConnectDatabase mainDataBase = new ConnectDatabase();
-            mainDataBase.connect();
-            PieGraph g = new PieGraph(mainDataBase.getGarages(), "Garages per deelgemeenten");
-            Main.mainScreen.setCenter(g.getGraph());
+//            ConnectDatabase mainDataBase = new ConnectDatabase();
+//            mainDataBase.connect();
+//            PieGraph g = new PieGraph(mainDataBase.getGarages(), "Garages per deelgemeenten");
+
 //            HashMap<String, Double> myFriends = new HashMap<String, Double>();
 //
 //            myFriends.put("2007", 50.0);
