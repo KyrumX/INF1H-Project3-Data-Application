@@ -1,7 +1,7 @@
 Create Table Garages(
     GarageNaam  		varchar(60) ,
-    Xpos				int,
-    Ypos				int,
+    Xpos				float,
+    Ypos				float,
     DeelGemeente		varchar(60),
 	primary key(GarageNaam)
     );
