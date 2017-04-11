@@ -8,7 +8,7 @@ Create Table Garages(
 	
 Create Table Autodiefstal(
 	DeelGemeente		varchar(60),
-	PercentageDiefstal	int,
-	Jaar				int,
+	PercentageDiefstal	float,
+	Jaar				float,
     primary key(DeelGemeente, Jaar)
 	);
