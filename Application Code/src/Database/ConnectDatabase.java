@@ -51,7 +51,7 @@ public class ConnectDatabase {
             Statement stmt = conn.createStatement();
             ResultSet rs;
 
-            rs = stmt.executeQuery("SELECT deelgemeente, percentagediefstal FROM autodiefstal WHERE = " + year);
+            rs = stmt.executeQuery("SELECT deelgemeente, percentagediefstal FROM autodiefstal WHERE jaar = " + year);
             while ( rs.next() ) {
                 String deelGemeenteNaam = rs.getString("deelgemeente");
                 double deelPercentage = rs.getDouble("percentagediefstal");
