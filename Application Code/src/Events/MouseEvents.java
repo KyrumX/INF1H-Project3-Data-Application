@@ -1,6 +1,7 @@
 package Events;
 
 import Database.ConnectDatabase;
+import Graphs.BarGraph;
 import Graphs.PieGraph;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

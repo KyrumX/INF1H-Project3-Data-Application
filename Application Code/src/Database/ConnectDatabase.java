@@ -44,4 +44,25 @@ public class ConnectDatabase {
         }
         return newHashMap;
     }
+
+    public HashMap getTheftYear(int year) {
+        HashMap<String, Double> newHashMap = new HashMap<String, Double>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs;
+
+            rs = stmt.executeQuery("SELECT deelgemeente, percentagediefstal FROM autodiefstal WHERE jaar = " + year);
+            while ( rs.next() ) {
+                String deelGemeenteNaam = rs.getString("deelgemeente");
+                double deelPercentage = rs.getDouble("percentagediefstal");
+                System.out.print(deelGemeenteNaam + " ");
+                System.out.println(deelPercentage);
+            }
+            conn.close();
+        } catch (Exception e) {
+            System.err.println("Got an exception!");
+            System.err.println(e.getMessage());
+        }
+        return newHashMap;
+    }
 }
