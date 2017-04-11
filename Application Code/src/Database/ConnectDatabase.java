@@ -55,8 +55,7 @@ public class ConnectDatabase {
             while ( rs.next() ) {
                 String deelGemeenteNaam = rs.getString("deelgemeente");
                 double deelPercentage = rs.getDouble("percentagediefstal");
-                System.out.print(deelGemeenteNaam + " ");
-                System.out.println(deelPercentage);
+                newHashMap.put(deelGemeenteNaam, deelPercentage);
             }
             conn.close();
         } catch (Exception e) {

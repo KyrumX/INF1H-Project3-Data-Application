@@ -68,9 +68,13 @@ public class Main extends Application {
 
         ConnectDatabase mainDataBase = new ConnectDatabase();
         mainDataBase.connect();
+        ConnectDatabase mainDataBase2 = new ConnectDatabase();
+        mainDataBase2.connect();
+        ConnectDatabase mainDataBase3 = new ConnectDatabase();
+        mainDataBase3.connect();
         PieGraph g = new PieGraph(mainDataBase.getGarages(), "Garages per deelgemeenten");
-        BarGraph b = new BarGraph(mainDataBase.getTheftYear(2009), "2009");
-        BarGraph c = new BarGraph(mainDataBase.getTheftYear(2011), "2011");
+        BarGraph b = new BarGraph(mainDataBase2.getTheftYear(2009), "2009");
+        BarGraph c = new BarGraph(mainDataBase3.getTheftYear(2011), "2011");
 
         AbstractButtonClass backButton1 = new GeneralButton(0, 40, "Back", e -> window.setScene(mainScene), true);
         AbstractButtonClass chooseCarTheft = new GeneralButton(0, 0, "CarTheft", e -> window.setScene(cartheftScene), false);
