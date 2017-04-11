@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.HashMap;
@@ -53,7 +54,8 @@ public class Main extends Application {
         Shadoweffect headshadow = new Shadoweffect(0.5);
 
         Label label1 = new Label("DATA APPLICATION");
-        label1.setTranslateY(-85);
+        label1.setTranslateY(-75);
+        label1.setTranslateX(10);
         label1.setEffect(headshadow.getShadow());
         //De titel van de window, staat linksbovenin;
         window.setTitle("Data Application");
@@ -93,7 +95,7 @@ public class Main extends Application {
         mainScreen.setTop(menubar);
 
         carTheftScene = new Scene(mainScreen, 720, 576);
-
+        carTheftScene.setFill(Color.CHOCOLATE);
         mainScene.getStylesheets().add("Styling/mainStyle.css");
         carTheftScene.getStylesheets().add("Styling/mainStyle.css");
         window.setScene(mainScene);
