@@ -37,7 +37,6 @@ public class ConnectDatabase {
                 double garageNaamCount = rs.getDouble("COUNT");
                 newHashMap.put(deelGemeenteNaam, garageNaamCount);
             }
-            conn.close();
         } catch (Exception e) {
             System.err.println("Got an exception!");
             System.err.println(e.getMessage());
@@ -57,7 +56,6 @@ public class ConnectDatabase {
                 double deelPercentage = rs.getDouble("percentagediefstal");
                 newHashMap.put(deelGemeenteNaam, deelPercentage);
             }
-            conn.close();
         } catch (Exception e) {
             System.err.println("Got an exception!");
             System.err.println(e.getMessage());
