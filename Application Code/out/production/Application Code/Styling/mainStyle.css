@@ -47,7 +47,64 @@
     -fx-background-color: #5fba7d;
 
 }
+.axis {
+    -fx-tick-label-fill: white;
+    -fx-tick-label-font-size: 15px;
 
+}
+.axis-label {
+    -fx-font-size: 15px;
+}
+
+.chart-bar {
+    -fx-border-radius: 3 3 0 0;
+    -fx-background-radius: 3 3 0 0;
+}
+
+.chart-bar:hover{
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-style: dotted;
+    -fx-translate-y: -10;
+}
+
+.chart-plot-background{
+    -fx-background-color: #990033;
+}
+
+.chart-legend{
+    -fx-background-color: transparent;
+    -fx-background: lightcoral;
+}
+.chart-legend-item{
+    -fx-font-size: 14;
+    -fx-background-color: transparent;
+}
+
+.chart-legend-item-symbol{
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+}
 .choice-box .menu-item:focused{
     -fx-background-color: #ca5249;
 }
+
+.series4 { -fx-background-color: #3999ff; }
+.series5 { -fx-background-color: #f2ff08; }
+.series5:hover {
+    -fx-border-color: rgba(2, 0, 2, 0.82);
+    -fx-border-width: 2px;
+    -fx-border-style: dotted;
+}
+.series6 { -fx-background-color: #ff6193; }
+.series8 { -fx-background-color: #9c7955; }
+.series9 { -fx-background-color: #FFA280; }
+.series10 { -fx-background-color: #46ffdf; }
+.series10:hover{
+    -fx-border-color: rgba(2, 0, 2, 0.82);
+    -fx-border-width: 2px;
+    -fx-border-style: dotted;
+}
+.series11 { -fx-background-color: #bc8d3f; }
+.series12 { -fx-background-color: rgba(0, 138, 15, 0.79); }
+.series13 { -fx-background-color: #374f98; }

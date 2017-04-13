@@ -6,13 +6,24 @@ import Buttons.GeneralButton;
 import Effects.Shadoweffect;
 import Graphs.BarGraph;
 import Graphs.PieGraph;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Aaron on 2-4-2017.
@@ -101,11 +112,11 @@ public class Main extends Application {
 
         cartheftScene = new Scene(cartheftScreen, 720, 540);
 
-
         mainScene.getStylesheets().add("Styling/mainStyle.css");
         garageScene.getStylesheets().add("Styling/mainStyle.css");
         cartheftScene.getStylesheets().add("Styling/mainStyle.css");
         chooseScreen.getStylesheets().add("Styling/mainStyle.css");
+
         window.setScene(mainScene);
         //      window.setFullScreen(true);
 
@@ -120,5 +131,6 @@ public class Main extends Application {
         System.out.println("Data application version " + versionNumber + " successfully launched!");
         launch(args);
     }
+
 
 }

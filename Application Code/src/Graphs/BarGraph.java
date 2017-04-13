@@ -1,10 +1,18 @@
 package Graphs;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Side;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Tooltip;
+import javafx.util.Duration;
+
 import java.util.HashMap;
 
 
@@ -31,9 +39,8 @@ public class BarGraph {
             barGraph.getData().addAll(series);
         }
         barGraph.setLegendSide(Side.LEFT);
+        barGraph.setId("test");
         chart = barGraph;
-
-
     }
 
     public BarChart getGraph() {
