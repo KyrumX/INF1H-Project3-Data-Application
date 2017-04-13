@@ -64,7 +64,7 @@ public class Main extends Application {
         //mainMenu is nu StackPane, later vervangen zodat we zelf coordinaten kunnen zetten;
         StackPane mainMenu = new StackPane();
         mainMenu.getChildren().addAll(exitButton.getButton(), startButton.getButton(), label1);
-        mainScene = new Scene(mainMenu, 720, 576);
+        mainScene = new Scene(mainMenu, 720, 540);
 
         ConnectDatabase mainDataBase = new ConnectDatabase();
         mainDataBase.connect();
@@ -82,8 +82,7 @@ public class Main extends Application {
 
         StackPane chooseScreen = new StackPane();
         chooseScreen.getChildren().addAll(backButton1.getButton(), chooseCarTheft.getButton(), chooseGarage.getButton());
-
-        chooseScene = new Scene(chooseScreen, 720, 576);
+        chooseScene = new Scene(chooseScreen, 720, 540);
 
         ToolBar menubarGarage = new ToolBar();
         menubarGarage.getItems().addAll(backButton.getButton());
@@ -100,12 +99,13 @@ public class Main extends Application {
         cartheftScreen = new BorderPane();
         cartheftScreen.setTop(menubarCartheft);
 
-        cartheftScene = new Scene(cartheftScreen, 720, 576);
+        cartheftScene = new Scene(cartheftScreen, 720, 540);
 
 
         mainScene.getStylesheets().add("Styling/mainStyle.css");
         garageScene.getStylesheets().add("Styling/mainStyle.css");
         cartheftScene.getStylesheets().add("Styling/mainStyle.css");
+        chooseScreen.getStylesheets().add("Styling/mainStyle.css");
         window.setScene(mainScene);
         //      window.setFullScreen(true);
 

@@ -1,8 +1,11 @@
 .root {
-    -fx-background-image: url("/about.jpg");
-    -fx-border-radius: 5px;
+    -fx-background-image: url("/about3.png");
     -fx-background-size: 100%;
     -fx-background-position: center center;
+}
+
+#chooseSc {
+    -fx-background-image: url("/about3.png");
 }
 
 .lel{
@@ -15,8 +18,6 @@
 
 .chart-legend-item {
     -fx-background-color:  #8bd7f7;
-    -fx-border-width: #8bd7f7;
-    -fx-border-image-width: #8bd7f7;
 }
 
 .button:hover {
@@ -34,7 +35,6 @@
 
 .choice-box {
     -fx-background-color: #ca5249;
-    -fx-border-radius: 5px;
     -fx-padding: 1px;
 
 }
@@ -45,7 +45,7 @@
 
 .choice-box .menu-item{
     -fx-background-color: #5fba7d;
-    -fx-border-radius: 0px;
+
 }
 
 .choice-box .menu-item:focused{
