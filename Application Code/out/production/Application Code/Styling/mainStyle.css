@@ -1,11 +1,28 @@
 .root {
-    -fx-background-image: url("/about3.png");
+    -fx-background-color: transparent;
+
+}
+
+.bg {
+    -fx-background-image: url("http://img.pixady.com/2017/04/692860_about3.png");
     -fx-background-size: 100%;
     -fx-background-position: center center;
+    -fx-background-radius: 6;
+}
+
+.tool {
+    -fx-background-radius: 6 6 0 0;
+    -fx-background-color: #95c25a;
+    -fx-border-color: #ff9095;
+    -fx-border-width: 0 0 2 0;
 }
 
 #chooseSc {
-    -fx-background-image: url("/about3.png");
+    -fx-background-color: transparent;
+    -fx-background-image: url("http://img.pixady.com/2017/04/692860_about3.png");
+    -fx-background-size: 100%;
+    -fx-background-position: center center;
+    -fx-background-radius: 6;
 }
 
 .lel{
@@ -14,10 +31,6 @@
 
 .button {
     -fx-background-color: whitesmoke;
-}
-
-.chart-legend-item {
-    -fx-background-color:  #8bd7f7;
 }
 
 .button:hover {
@@ -59,6 +72,10 @@
 .chart-bar {
     -fx-border-radius: 3 3 0 0;
     -fx-background-radius: 3 3 0 0;
+    -fx-border-width: 5px;
+    -fx-border-style: solid;
+    -fx-border-color: transparent;
+
 }
 
 .chart-bar:hover{
@@ -66,6 +83,9 @@
     -fx-border-width: 2px;
     -fx-border-style: dotted;
     -fx-translate-y: -10;
+    -fx-opacity: 0.6;
+    -fx-translate-z: 0;
+    -fx-scale-z: 1.0;
 }
 
 .chart-plot-background{
@@ -79,6 +99,7 @@
 .chart-legend-item{
     -fx-font-size: 14;
     -fx-background-color: transparent;
+    -fx-translate-y: -30px;
 }
 
 .chart-legend-item-symbol{
@@ -89,12 +110,17 @@
     -fx-background-color: #ca5249;
 }
 
+.series3, .series3:hover{
+    -fx-background-color: white;
+
+}
 .series4 { -fx-background-color: #3999ff; }
 .series5 { -fx-background-color: #f2ff08; }
 .series5:hover {
     -fx-border-color: rgba(2, 0, 2, 0.82);
     -fx-border-width: 2px;
     -fx-border-style: dotted;
+
 }
 .series6 { -fx-background-color: #ff6193; }
 .series8 { -fx-background-color: #9c7955; }
