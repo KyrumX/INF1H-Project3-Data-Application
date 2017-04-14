@@ -63,7 +63,7 @@ public class Main extends Application {
 
         public WindowButtons() {
             Button closeBtn = new Button("X");
-
+            closeBtn.setId("closebutton");
             closeBtn.setOnAction(new EventHandler<ActionEvent>() {
 
                 @Override
