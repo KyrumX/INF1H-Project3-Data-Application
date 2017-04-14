@@ -9,18 +9,22 @@ import Effects.Shadoweffect;
 import Graphs.BarGraph;
 import Graphs.PieGraph;
 import Modifications.Draggable;
-import com.sun.javaws.jnl.JavaFXAppDesc;
+
 import javafx.animation.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
+
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
+
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -87,7 +91,8 @@ public class Main extends Application {
         Shadoweffect headshadow = new Shadoweffect(0.5);
 
         Label label1 = new Label("DATA APPLICATION");
-        label1.setTranslateY(-85);
+        label1.setTranslateY(-75);
+        label1.setTranslateX(10);
         label1.setEffect(headshadow.getShadow());
 
 
@@ -170,6 +175,7 @@ public class Main extends Application {
 
         BorderPane cs = new BorderPane();
         StackPane chooseScreen = new StackPane();
+
         Draggable.setDraggable(chooseScreen);
         chooseScreen.getChildren().addAll(backButton1.getButton(), chooseCarTheft.getButton(), chooseGarage.getButton());
         cs.setCenter(chooseScreen);
@@ -213,6 +219,7 @@ public class Main extends Application {
 
         ft.play();
         thewindow.setScene(mainScene);
+
         //      window.setFullScreen(true);
 
         //Haalt de "press escape to exit" message weg
