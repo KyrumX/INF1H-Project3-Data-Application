@@ -21,6 +21,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 
@@ -57,10 +58,12 @@ public class Main extends Application {
 
     //Bepalen van de State van het programma;
     private enum StateL{
-        MENU
+        MAIN,
+        J2012,
+        J2009
     }
 
-    private StateL State = StateL.MENU;
+    private StateL currentState = StateL.MAIN;
 
     //Methodes:
 
@@ -176,8 +179,28 @@ public class Main extends Application {
         AbstractButtonClass chooseCarTheft = new GeneralButton(0, 0, "CarTheft", e -> thewindow.setScene(cartheftScene), false);
         AbstractButtonClass chooseGarage = new GeneralButton(0, -40, "Garage", e -> thewindow.setScene(garageScene), false);
 
-        AbstractButtonClass cartheftButton1 = new GeneralButton(0, 0, "2009", e -> Main.cartheftScreen.setCenter(b.getGraph()), false);
-        AbstractButtonClass cartheftButton2 = new GeneralButton(0, 0, "2011", e -> Main.cartheftScreen.setCenter(c.getGraph()), false);
+        /*********************
+         *   Diefstal Graph  *
+         ********************/
+        cartheftScreen = new BorderPane();
+        cartheftScene = new Scene(new Group(cartheftScreen));
+        cartheftScreen.setMinSize(720, 540);
+
+        final ObservableList<Node> childerenCarTheft = ((Group) cartheftScene.getRoot()).getChildren();
+
+        //Buttons op de auto diefstal page
+        AbstractButtonClass cartheftButton1 = new GeneralButton(0, 0, "2009", e -> {
+            BarChart diefstal2009 = b.getGraph();
+            childerenCarTheft.add(diefstal2009);
+            MouseEvents.getValueBarChart(diefstal2009, childerenCarTheft, true);
+            Main.cartheftScreen.setCenter(diefstal2009);
+        }, false);
+        AbstractButtonClass cartheftButton2 = new GeneralButton(0, 0, "2011", e -> {
+            BarChart diefstal2011 = c.getGraph();
+            childerenCarTheft.add(diefstal2011);
+            MouseEvents.getValueBarChart(diefstal2011, childerenCarTheft, true);
+            Main.cartheftScreen.setCenter(diefstal2011);
+        }, false);
 
         BorderPane cs = new BorderPane();
         StackPane chooseScreen = new StackPane();
@@ -197,13 +220,13 @@ public class Main extends Application {
         BorderPane garageScreen = new BorderPane();
         garageScene = new Scene(new Group(garageScreen));
         garageScreen.setMinSize(720, 540);
-        final ObservableList<Node> children = ((Group) garageScene.getRoot()).getChildren();
+        final ObservableList<Node> childrenGarages = ((Group) garageScene.getRoot()).getChildren();
 
         PieChart garagesChart = g.getGraph();
-        children.add(garagesChart);
+        childrenGarages.add(garagesChart);
 
         //Roep de handler op die het aantal garages toont wanneer er op een chart deel geklikt wordt;
-        MouseEvents.getValueChart(garagesChart, children);
+        MouseEvents.getValuePieChart(garagesChart, childrenGarages, false);
 
         garageScreen.setCenter(garagesChart);
         garageScreen.setTop(menubarGarage);
@@ -211,14 +234,7 @@ public class Main extends Application {
         ToolBar menubarCartheft = new ToolBar();
         menubarCartheft.getItems().addAll(backButton2.getButton(), cartheftButton1.getButton(), cartheftButton2.getButton());
 
-
-        /*********************
-         *   Diefstal Graph  *
-         ********************/
-        cartheftScreen = new BorderPane();
         cartheftScreen.setTop(menubarCartheft);
-
-        cartheftScene = new Scene(cartheftScreen, 720, 540);
 
         cs.getStylesheets().add("Styling/mainStyle.css");
         cartheftScreen.getStyleClass().add("bg");

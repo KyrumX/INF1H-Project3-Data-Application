@@ -20,7 +20,7 @@ import java.util.HashMap;
  * Created by aaron on 10-4-2017.
  */
 public class BarGraph {
-    public BarChart chart;
+    public BarChart<String,Number> chart;
 
     public BarGraph(HashMap<String, Double> chartData, String deelGemeente) {
 
@@ -41,6 +41,7 @@ public class BarGraph {
         barGraph.setLegendSide(Side.LEFT);
         barGraph.setId("test");
         chart = barGraph;
+
     }
 
     public BarChart getGraph() {
