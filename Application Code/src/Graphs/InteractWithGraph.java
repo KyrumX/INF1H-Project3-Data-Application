@@ -1,61 +1,47 @@
-//package Graphs;
-//
-//import javafx.application.Application;
-//import javafx.collections.FXCollections;
-//import javafx.collections.ObservableList;
-//import javafx.event.EventHandler;
-//import javafx.scene.Node;
-//import javafx.scene.Scene;
-//import javafx.scene.control.Label;
-//import javafx.scene.input.MouseEvent;
-//import javafx.scene.paint.Color;
-//import javafx.stage.Stage;
-//import javafx.scene.chart.*;
-//import javafx.scene.Group;
-//
-//public class InteractWithGraph extends Application {
-//
-//    @Override public void start(Stage stage) {
-//        Scene scene = new Scene(new Group());
-//        stage.setTitle("Imported Fruits");
-//        stage.setWidth(500);
-//        stage.setHeight(500);
-//
-//        ObservableList<PieChart.Data> pieChartData =
-//                FXCollections.observableArrayList(
-//                        new PieChart.Data("Grapefruit", 13),
-//                        new PieChart.Data("Oranges", 25),
-//                        new PieChart.Data("Plums", 10),
-//                        new PieChart.Data("Pears", 22),
-//                        new PieChart.Data("Apples", 30));
-//        final PieChart chart = new PieChart(pieChartData);
-//        chart.setTitle("Imported Fruits");
-//        final ObservableList<Node> children = ((Group) scene.getRoot()).getChildren();
-//
-//        children.add(chart);
-//
-//        final Label caption = new Label("");
-//        caption.setTextFill(Color.DARKORANGE);
-//        caption.setStyle("-fx-font: 24 arial;");
-//        children.add(caption);
-//
-//        for (final PieChart.Data data : chart.getData()) {
-//            data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
-//                    new EventHandler<MouseEvent>() {
-//                        @Override public void handle(MouseEvent e) {
-//                            caption.setTranslateX(e.getSceneX());
-//                            caption.setTranslateY(e.getSceneY());
-//                            caption.setText(String.valueOf(data.getPieValue()) + "%");
-//                            caption.setVisible(true);
-//                        }
-//                    });
-//        }
-//
-//        stage.setScene(scene);
-//        stage.show();
-//    }
-//
-//    public static void main(String[] args) {
-//        launch(args);
-//    }
-//}
+package Graphs;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+
+public class InteractWithGraph extends Application {
+    final static String austria = "Austria";
+    final static String brazil = "Brazil";
+
+    @Override public void start(Stage stage) {
+        stage.setTitle("Bar Chart Sample");
+        final CategoryAxis xAxis = new CategoryAxis();
+        final NumberAxis yAxis = new NumberAxis();
+        final BarChart<String,Number> bc = new BarChart(xAxis,yAxis);
+        bc.setTitle("Country Summary");
+        xAxis.setLabel("Country");
+        yAxis.setLabel("Value");
+
+        XYChart.Series series1 = new XYChart.Series();
+        series1.setName("2003");
+        series1.getData().add(new XYChart.Data(austria, 25601.34));
+        series1.getData().add(new XYChart.Data(brazil, 20148.82));
+
+        Scene scene  = new Scene(bc,800,600);
+        bc.getData().addAll(series1);
+        //now you can get the nodes.
+        for (XYChart.Series<String,Number> serie: bc.getData()){
+            for (XYChart.Data<String, Number> item: serie.getData()){
+                item.getNode().setOnMousePressed((MouseEvent event) -> {
+                    System.out.println("you clicked "+item.toString());
+                });
+            }
+        }
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
