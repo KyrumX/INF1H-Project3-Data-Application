@@ -6,6 +6,7 @@ import Buttons.GeneralButton;
 import Effects.FadeEffect;
 import Effects.ScaleEffect;
 import Effects.Shadoweffect;
+import Events.MouseEvents;
 import Graphs.BarGraph;
 import Graphs.PieGraph;
 import Modifications.Draggable;
@@ -13,12 +14,17 @@ import Modifications.Draggable;
 import javafx.animation.*;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
@@ -185,14 +191,30 @@ public class Main extends Application {
         ToolBar menubarGarage = new ToolBar();
         menubarGarage.getItems().addAll(backButton.getButton());
 
+        /*******************************
+         *  Interactieve Garage Graph  *
+         *******************************/
         BorderPane garageScreen = new BorderPane();
-        garageScene = new Scene(garageScreen, 720, 540);
-        garageScreen.setCenter(g.getGraph());
+        garageScene = new Scene(new Group(garageScreen));
+        garageScreen.setMinSize(720, 540);
+        final ObservableList<Node> children = ((Group) garageScene.getRoot()).getChildren();
+
+        PieChart garagesChart = g.getGraph();
+        children.add(garagesChart);
+
+        //Roep de handler op die het aantal garages toont wanneer er op een chart deel geklikt wordt;
+        MouseEvents.getValueChart(garagesChart, children);
+
+        garageScreen.setCenter(garagesChart);
         garageScreen.setTop(menubarGarage);
 
         ToolBar menubarCartheft = new ToolBar();
         menubarCartheft.getItems().addAll(backButton2.getButton(), cartheftButton1.getButton(), cartheftButton2.getButton());
 
+
+        /*********************
+         *   Diefstal Graph  *
+         ********************/
         cartheftScreen = new BorderPane();
         cartheftScreen.setTop(menubarCartheft);
 
