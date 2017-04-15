@@ -28,21 +28,18 @@ public class MouseEvents implements EventHandler<ActionEvent> {
     public static void getChoice(ChoiceBox<String> ChoiceYear){
     }
     public static void getValueChart(PieChart chart, ObservableList<Node> children) {
-        final Label caption = new Label("");
-        caption.setTextFill(Color.DARKORANGE);
-        caption.setStyle("-fx-font: 24 arial;");
-        children.add(caption);
+        final Label numberCaption = new Label("");
+        numberCaption.setStyle("-fx-font: 24 arial;");
+        children.add(numberCaption);
 
         for (final PieChart.Data data : chart.getData()) {
             data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
-                    new EventHandler<MouseEvent>() {
-                        @Override public void handle(MouseEvent e) {
-                            caption.setTranslateX(e.getSceneX());
-                            caption.setTranslateY(e.getSceneY());
+                    e -> {
+                            numberCaption.setTranslateX(e.getSceneX());
+                            numberCaption.setTranslateY(e.getSceneY());
                             int integerGarage = (int) data.getPieValue();
-                            caption.setText(String.valueOf(integerGarage));
-                            caption.setVisible(true);
-                        }
+                            numberCaption.setText(String.valueOf(integerGarage));
+                            numberCaption.setVisible(true);
                     });
         }
     }
