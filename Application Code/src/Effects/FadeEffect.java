@@ -16,7 +16,7 @@ public class FadeEffect {
         this.fd.setDuration(new Duration(5000));
         this.fd.setFromValue(0.3);
         this.fd.setToValue(1.0);
-        this.fd.setCycleCount(5);
+        this.fd.setCycleCount(-1);
         this.fd.setRate(1.3);
         this.fd.setAutoReverse(true);
     }

@@ -17,7 +17,7 @@ public final class ScaleEffect {
         this.st.setFromY(1.0);
         this.st.setToX(1.3);
         this.st.setToY(1.3);
-        this.st.setCycleCount(7);
+        this.st.setCycleCount(-1);
         this.st.setDuration(new Duration(4000));
         this.st.setAutoReverse(true);
     }

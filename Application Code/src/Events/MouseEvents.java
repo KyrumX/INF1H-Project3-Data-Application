@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ChoiceBox;
@@ -18,7 +17,7 @@ import javafx.scene.input.MouseEvent;
  */
 
 public class MouseEvents implements EventHandler<ActionEvent> {
-
+    public static boolean isHovering = false;
     @Override
     public void handle(ActionEvent event) {
     }
@@ -34,8 +33,8 @@ public class MouseEvents implements EventHandler<ActionEvent> {
         for (final PieChart.Data data : chart.getData()) {
             data.getNode().addEventHandler(MouseEvent.MOUSE_MOVED,
                     e -> {
-                        numberCaption.setTranslateX(e.getSceneX());
-                        numberCaption.setTranslateY(e.getSceneY());
+                        numberCaption.setTranslateX(e.getSceneX()+5);
+                        numberCaption.setTranslateY(e.getSceneY()+5);
                         int integerGarage = (int) data.getPieValue();
                         if (!isProcent) {
                             numberCaption.setText(String.valueOf("   " + integerGarage));
@@ -50,7 +49,8 @@ public class MouseEvents implements EventHandler<ActionEvent> {
                     });
             data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED,
                     e -> {
-                        numberCaption.setVisible(true);
+                            numberCaption.setVisible(true);
+
                     });
         }
     }
@@ -64,8 +64,15 @@ public class MouseEvents implements EventHandler<ActionEvent> {
             for (XYChart.Data<String, Number> data : serie.getData()) {
                 data.getNode().addEventHandler(MouseEvent.MOUSE_MOVED,
                         e -> {
-                            numberCaption.setTranslateX(e.getSceneX());
-                            numberCaption.setTranslateY(e.getSceneY());
+                            if (e.getSceneX() < 630) {
+                                numberCaption.setTranslateX(e.getSceneX()+10);
+                                numberCaption.setTranslateY(e.getSceneY()+10);
+                            } else {
+                                numberCaption.setTranslateX(e.getSceneX()-40);
+                                numberCaption.setTranslateY(e.getSceneY()+25);
+                            }
+                            System.out.println(e.getSceneY());
+
                             if (!isProcent) {
                                 numberCaption.setText(String.valueOf("   " + data.getYValue()));
                             } else {
@@ -75,10 +82,16 @@ public class MouseEvents implements EventHandler<ActionEvent> {
                         });
                 data.getNode().addEventHandler(MouseEvent.MOUSE_EXITED,
                         e -> {
+                            data.getNode().setTranslateY(0);
                             numberCaption.setVisible(false);
                         });
                 data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED,
                         e -> {
+                            if(e.getSceneY() > 457 && e.getSceneY() < 471) {
+                                data.getNode().setTranslateY(0);
+                            } else {
+                                data.getNode().setTranslateY(-10);
+                            }
                             numberCaption.setVisible(true);
                         });
             }

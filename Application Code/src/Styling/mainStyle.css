@@ -1,6 +1,5 @@
 .root {
     -fx-background-color: transparent;
-
 }
 
 .bg {
@@ -10,15 +9,18 @@
     -fx-background-radius: 6;
 }
 
-#closebutton:hover{
-    -fx-background-color: #ff3a3f;
+#closebutton:hover {
+    -fx-background-image: url("http://img.pixady.com/2017/04/692860_about3.png");
+    -fx-border-color: #990033;
+    -fx-border-image-width: 1px;
+    -fx-highlight-fill: #5fba7d;
 }
 
 .tool {
     -fx-background-radius: 6 6 0 0;
-    -fx-background-color: #95c25a;
-    -fx-border-color: #ff9095;
-    -fx-border-width: 0 0 2 0;
+    -fx-background-color: linear-gradient(to bottom, #edebed , #cfcdcf);
+    -fx-border-color: #676c6b;
+    -fx-border-width: 0 0 1 0;
 }
 
 #chooseSc {
@@ -35,7 +37,7 @@
     -fx-background-repeat: no-repeat;
 }
 
-.lel{
+.lel {
     -fx-background: linear-gradient(to right, #426fc2 , #00b2ff);
 }
 
@@ -51,7 +53,7 @@
     -fx-background-color: rgb(235, 94, 84);
 }
 
-.label{
+.label {
     -fx-text-fill: white;
     -fx-font-size: 35px
 }
@@ -62,11 +64,11 @@
 
 }
 
-.choice-box .label{
+.choice-box .label {
     -fx-font-size: 20px;
 }
 
-.choice-box .menu-item{
+.choice-box .menu-item {
     -fx-background-color: #5fba7d;
 
 }
@@ -88,39 +90,55 @@
 
 }
 
-.chart-bar:hover{
+.chart-bar:hover {
     -fx-border-color: white;
     -fx-border-width: 2px;
     -fx-border-style: dotted;
-    -fx-translate-y: -10;
+    /*-fx-translate-y: -10;*/
     -fx-opacity: 0.6;
-    -fx-translate-z: 0;
+    /*-fx-translate-z: 0;*/
     -fx-scale-z: 1.0;
 }
 
-.chart-plot-background{
+.chart-pie:hover {
+    -fx-opacity: 0.5;
+}
+
+.chart-pie-label {
+    -fx-fill: white;
+}
+
+.chart-pie-label-line {
+    -fx-fill: #8ca4ff;
+}
+
+.chart-plot-background {
     -fx-background-color: #990033;
 }
 
-.chart-legend{
+.testpie {
+    -fx-background-color: blue;
+}
+
+.chart-legend {
     -fx-background-color: transparent;
     -fx-background: lightcoral;
 }
-.chart-legend-item{
+.chart-legend-item {
     -fx-font-size: 14;
     -fx-background-color: transparent;
-    -fx-translate-y: -30px;
+    -fx-translate-y: -10px;
 }
 
-.chart-legend-item-symbol{
+.chart-legend-item-symbol {
     -fx-border-radius: 3px;
     -fx-background-radius: 3px;
 }
-.choice-box .menu-item:focused{
+.choice-box .menu-item:focused {
     -fx-background-color: #ca5249;
 }
 
-.series3, .series3:hover{
+.series3, .series3:hover {
     -fx-background-color: white;
 
 }
