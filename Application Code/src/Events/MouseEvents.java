@@ -71,7 +71,6 @@ public class MouseEvents implements EventHandler<ActionEvent> {
                                 numberCaption.setTranslateX(e.getSceneX()-40);
                                 numberCaption.setTranslateY(e.getSceneY()+25);
                             }
-                            System.out.println(e.getSceneY());
 
                             if (!isProcent) {
                                 numberCaption.setText(String.valueOf("   " + data.getYValue()));
