@@ -7,6 +7,8 @@ import javafx.util.Duration;
 
 /**
  * Created by Selim on 13/4/2017.
+ *
+ * TODO: Intoscherm/loadingscherm maken
  */
 public class Intro {
     public Intro(){

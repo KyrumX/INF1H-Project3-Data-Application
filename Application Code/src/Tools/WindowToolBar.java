@@ -1,6 +1,5 @@
 package Tools;
 
-import Main.Main;
 import Modifications.Draggable;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.HBox;
@@ -22,7 +21,7 @@ public class WindowToolBar {
         this.toolBar.setMaxHeight(height);
         this.aligner.setHgrow(this.aligner, Priority.ALWAYS);
         this.toolBar.getItems().add(this.aligner);
-        this.toolBar.getItems().add(new Main.WindowButtons(false));
+        this.toolBar.getItems().add(new CloseButton(false));
     }
 
     public ToolBar getToolBar(){

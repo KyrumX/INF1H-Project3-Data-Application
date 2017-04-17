@@ -11,13 +11,12 @@ import Graphs.BarGraph;
 import Graphs.PieGraph;
 import Modifications.Draggable;
 
+import Tools.CloseButton;
+import Tools.MinimizeButton;
 import Tools.WindowToolBar;
 import javafx.animation.*;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
-
-import javafx.event.EventHandler;
 
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -26,12 +25,6 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 import javafx.scene.layout.BorderPane;
@@ -48,6 +41,8 @@ import java.util.List;
  * Created by Aaron on 2-4-2017.
  * .gitignore has been instructed to ignore certain files.
  * This file will act as the Main file, we will call all code from this file.
+ *
+ * TODO: get maximize screen button working, icon for program, fade-out when minimizing, initial info scene cartheftscene
  */
 
 public class Main extends Application {
@@ -56,8 +51,10 @@ public class Main extends Application {
     public static Stage window;
     public static Scene mainScene, garageScene, chooseScene, cartheftScene;
     public static boolean menuState;
-    public static BorderPane cartheftScreen;
+    public static BorderPane cartheftScreen, mainMenu, garageScreen, cs;
     public static Stage thewindow;
+    final double initialSceneWidth = 720;
+    final double initialSceneHeight = 640;
 
     //Bepalen van de State van het programma;
     private enum StateL{
@@ -74,48 +71,6 @@ public class Main extends Application {
     protected void loadFiles() {
         //Hier laden we alle files zoals afbeeldingen;
     }
-
-    public static class WindowButtons extends HBox {
-
-        public WindowButtons(boolean isShifted) {
-            Image image = new Image("/Styling/closebutton.png");
-            ImageView iv1 = new ImageView();
-            iv1.setId("closebutton");
-            iv1.setImage(image);
-            iv1.setImage(image);
-            iv1.setFitWidth(17);
-            iv1.setPreserveRatio(true);
-            iv1.setSmooth(true);
-            iv1.setCache(true);
-
-            ColorAdjust colorAdjust = new ColorAdjust();
-            colorAdjust.setBrightness(0.5);
-
-            iv1.addEventFilter(MouseEvent.MOUSE_ENTERED, e -> {
-
-                iv1.setEffect(colorAdjust);
-
-            });
-            iv1.addEventFilter(MouseEvent.MOUSE_EXITED, e -> {
-                iv1.setEffect(null);
-            });
-
-            iv1.setOnMousePressed(new EventHandler<MouseEvent>() {
-
-                @Override
-                public void handle(MouseEvent actionEvent) {
-                    Platform.exit();
-                }
-            });
-
-            if (isShifted){
-                this.setTranslateY(4);
-            }
-
-            this.getChildren().add(iv1);
-        }
-    }
-
 
     @Override
     public void start(Stage primaryStage) {
@@ -162,7 +117,13 @@ public class Main extends Application {
         mainstack.getChildren().addAll(exitButton.getButton(), startButton.getButton(), label1);
         mainMenu.setCenter(mainstack);
 
-        mainMenu.setTop(new WindowToolBar().getToolBar());
+        ToolBar MainMenubar = new ToolBar();
+        Draggable.setDraggable(MainMenubar);
+        MainMenubar.getStyleClass().add("tool");
+        MainMenubar.getItems().addAll(new MinimizeButton(false), new WindowToolBar().getAligner(), new CloseButton(false));
+
+
+        mainMenu.setTop(MainMenubar);
 
         mainScene = new Scene(mainMenu, 720, 540);
 
@@ -184,10 +145,17 @@ public class Main extends Application {
         /*********************
          *   Diefstal Graph  *
          ********************/
+
         cartheftScreen = new BorderPane();
         Draggable.setDraggable(cartheftScreen);
         cartheftScene = new Scene(new Group(cartheftScreen));
         cartheftScreen.setMinSize(720, 540);
+
+        ToolBar menubarCartheft = new ToolBar();
+        Draggable.setDraggable(menubarCartheft);
+        menubarCartheft.getStyleClass().add("tool");
+
+        cartheftScreen.setTop(menubarCartheft);
 
         final ObservableList<Node> childerenCarTheft = ((Group) cartheftScene.getRoot()).getChildren();
 
@@ -205,25 +173,38 @@ public class Main extends Application {
             Main.cartheftScreen.setCenter(diefstal2011);
         }, false);
 
+        menubarCartheft.getItems().addAll(backButton2.getButton(), cartheftButton1.getButton(), cartheftButton2.getButton(), new WindowToolBar().getAligner(), new MinimizeButton(true), new CloseButton(true));
+
+        /***************************
+         *      Choose Screen      *
+         **************************/
+
         BorderPane cs = new BorderPane();
         StackPane chooseScreen = new StackPane();
-
         Draggable.setDraggable(chooseScreen);
+
+        ToolBar menubarcs = new ToolBar();
+        Draggable.setDraggable(menubarcs);
+        menubarcs.getStyleClass().add("tool");
+        menubarcs.getItems().addAll(new MinimizeButton(false), new WindowToolBar().getAligner(), new CloseButton(false));
+
         chooseScreen.getChildren().addAll(backButton1.getButton(), chooseCarTheft.getButton(), chooseGarage.getButton());
         cs.setCenter(chooseScreen);
-        cs.setTop(new WindowToolBar().getToolBar());
-        chooseScene = new Scene(cs, 720, 540);
 
-        ToolBar menubarGarage = new ToolBar();
-        Draggable.setDraggable(menubarGarage);
-        menubarGarage.getStyleClass().add("tool");
-        menubarGarage.getItems().addAll(backButton.getButton(), new WindowToolBar().getAligner(), new WindowButtons(true));
+        cs.setTop(menubarcs);
+        chooseScene = new Scene(cs, 720, 540);
 
         /*******************************
          *  Interactieve Garage Graph  *
          *******************************/
+
         BorderPane garageScreen = new BorderPane();
         Draggable.setDraggable(garageScreen);
+
+        ToolBar menubarGarage = new ToolBar();
+        Draggable.setDraggable(menubarGarage);
+        menubarGarage.getStyleClass().add("tool");
+        menubarGarage.getItems().addAll(backButton.getButton(), new WindowToolBar().getAligner(), new MinimizeButton(true), new CloseButton(true));
 
         garageScene = new Scene(new Group(garageScreen));
         garageScreen.setMinSize(720, 540);
@@ -239,12 +220,9 @@ public class Main extends Application {
 
         garageScreen.setTop(menubarGarage);
 
-        ToolBar menubarCartheft = new ToolBar();
-        Draggable.setDraggable(menubarCartheft);
-        menubarCartheft.getStyleClass().add("tool");
-        menubarCartheft.getItems().addAll(backButton2.getButton(), cartheftButton1.getButton(), cartheftButton2.getButton(), new WindowToolBar().getAligner(), new WindowButtons(true));
-
-        cartheftScreen.setTop(menubarCartheft);
+        /***************************
+         *       Stylesheets       *
+         ***************************/
 
         cs.getStylesheets().add("Styling/mainStyle.css");
         cartheftScreen.getStyleClass().add("bg");
@@ -253,7 +231,6 @@ public class Main extends Application {
 
 
         List<Scene> l = new ArrayList<>();
-
         l.add(mainScene);
         l.add(chooseScene);
         l.add(cartheftScene);
@@ -264,8 +241,8 @@ public class Main extends Application {
             i.setFill(Color.TRANSPARENT);
         }
 
-
         ft.play();
+
         thewindow.setScene(mainScene);
 
         //      window.setFullScreen(true);

@@ -31,12 +31,6 @@
     -fx-background-radius: 6;
 }
 
-#choosescreen {
-    -fx-background-image: url("about3.png");
-    -fx-background-size: 100%;
-    -fx-background-repeat: no-repeat;
-}
-
 .lel {
     -fx-background: linear-gradient(to right, #426fc2 , #00b2ff);
 }
