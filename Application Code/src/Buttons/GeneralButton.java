@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 /**
  * Created by Selim on 6/4/2017.
  */
+
 public class GeneralButton extends AbstractButtonClass {
     private Button button;
     public GeneralButton(int OffsetX,int OffsetY, String label, EventHandler<ActionEvent> x, boolean isExitButton){
