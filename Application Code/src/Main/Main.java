@@ -47,11 +47,11 @@ import java.util.List;
 
 public class Main extends Application {
     public static double versionNumber = 1.0;
-    public static AbstractButtonClass exitButton, startButton;
+    public static AbstractButtonClass exitButton, startButton, aboutButton, creditsButton;
     public static Stage window;
-    public static Scene mainScene, garageScene, chooseScene, cartheftScene;
+    public static Scene mainScene, garageScene, chooseScene, cartheftScene, aboutScene, creditsScene;
     public static boolean menuState;
-    public static BorderPane cartheftScreen, mainMenu, garageScreen, cs;
+    public static BorderPane cartheftScreen, mainMenu, garageScreen, aboutScreen, creditsScreen, cs;
     public static Stage thewindow;
     final double initialSceneWidth = 720;
     final double initialSceneHeight = 640;
@@ -98,8 +98,10 @@ public class Main extends Application {
         thewindow.setTitle("Data Application");
 
         AbstractButtonClass startButton = new GeneralButton(0, 0, "Start", e -> thewindow.setScene(Main.chooseScene), false);
-        AbstractButtonClass exitButton = new GeneralButton(0, 40, "Exit", e -> {System.out.println("Applicatie wordt afgesloten...");thewindow.close();}, true);
+        AbstractButtonClass exitButton = new GeneralButton(0, 120, "Exit", e -> {System.out.println("Applicatie wordt afgesloten...");thewindow.close();}, true);
         AbstractButtonClass backButton = new GeneralButton(0, 0, "Back", e -> thewindow.setScene(chooseScene), true);
+        AbstractButtonClass aboutButton = new GeneralButton(0, 40, "About", e -> thewindow.setScene(aboutScene), false);
+        AbstractButtonClass creditsButton = new GeneralButton(0, 80, "Credits", e -> thewindow.setScene(creditsScene), false);
         AbstractButtonClass backButton2 = new GeneralButton(0, 0, "Back", e -> {thewindow.setScene(chooseScene); Main.cartheftScreen.setCenter(null);}, true);
 
 
@@ -114,13 +116,20 @@ public class Main extends Application {
 
         StackPane mainstack = new StackPane();
 
-        mainstack.getChildren().addAll(exitButton.getButton(), startButton.getButton(), label1);
+        mainstack.getChildren().addAll(exitButton.getButton(), startButton.getButton(), creditsButton.getButton(), aboutButton.getButton(), label1);
         mainMenu.setCenter(mainstack);
 
         ToolBar MainMenubar = new ToolBar();
         Draggable.setDraggable(MainMenubar);
         MainMenubar.getStyleClass().add("tool");
         MainMenubar.getItems().addAll(new MinimizeButton(false), new WindowToolBar().getAligner(), new CloseButton(false));
+
+        aboutScreen = new BorderPane();
+        aboutScene = new Scene(aboutScreen, 720, 540);
+
+        creditsScreen = new BorderPane();
+        aboutScene = new Scene(creditsScreen, 720, 540);
+
 
 
         mainMenu.setTop(MainMenubar);
