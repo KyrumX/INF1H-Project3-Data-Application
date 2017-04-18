@@ -100,7 +100,7 @@ public class Main extends Application {
         AbstractButtonClass startButton = new GeneralButton(0, 0, "Start", e -> thewindow.setScene(Main.chooseScene), false);
         AbstractButtonClass exitButton = new GeneralButton(0, 40, "Exit", e -> {System.out.println("Applicatie wordt afgesloten...");thewindow.close();}, true);
         AbstractButtonClass backButton = new GeneralButton(0, 0, "Back", e -> thewindow.setScene(chooseScene), true);
-        AbstractButtonClass backButton2 = new GeneralButton(0, 0, "Back", e -> thewindow.setScene(chooseScene), true);
+        AbstractButtonClass backButton2 = new GeneralButton(0, 0, "Back", e -> {thewindow.setScene(chooseScene); Main.cartheftScreen.setCenter(null);}, true);
 
 
         /********************
