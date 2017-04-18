@@ -12,9 +12,9 @@ import Graphs.PieGraph;
 import Modifications.Draggable;
 
 import Tools.CloseButton;
+import Tools.GeneralScreen;
 import Tools.MinimizeButton;
 import Tools.WindowToolBar;
-import javafx.animation.*;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 
@@ -36,7 +36,6 @@ import javafx.stage.StageStyle;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * Created by Aaron on 2-4-2017.
  * .gitignore has been instructed to ignore certain files.
@@ -46,15 +45,11 @@ import java.util.List;
  */
 
 public class Main extends Application {
-    public static double versionNumber = 1.0;
-    public static AbstractButtonClass exitButton, startButton;
+    private static double versionNumber = 1.0;
     public static Stage window;
-    public static Scene mainScene, garageScene, chooseScene, cartheftScene;
-    public static boolean menuState;
-    public static BorderPane cartheftScreen, mainMenu, garageScreen, cs;
+    private static Scene mainScene, garageScene, chooseScene, cartheftScene;
+    public static BorderPane mainMenu, garageScreen;
     public static Stage thewindow;
-    final double initialSceneWidth = 720;
-    final double initialSceneHeight = 640;
 
     //Bepalen van de State van het programma;
     private enum StateL{
@@ -80,52 +75,33 @@ public class Main extends Application {
         window.initStyle(StageStyle.UNDECORATED);
 
         thewindow = new Stage(StageStyle.TRANSPARENT);
-
-        Shadoweffect headshadow = new Shadoweffect(0.5);
+        thewindow.setTitle("Data Application");
 
         Label label1 = new Label("DATA APPLICATION");
         label1.setTranslateY(-75);
         label1.setTranslateX(10);
-        label1.setEffect(headshadow.getShadow());
+        label1.setEffect(new Shadoweffect(0.5).getShadow());
 
-
-        FadeTransition ft = new FadeEffect(label1).getFadeTransition();
-
-        ScaleTransition st = new ScaleEffect(label1).getScaleEffect();
-        st.play();
-
-        //De titel van de window, staat linksbovenin;
-        thewindow.setTitle("Data Application");
-
-        AbstractButtonClass startButton = new GeneralButton(0, 0, "Start", e -> thewindow.setScene(Main.chooseScene), false);
-        AbstractButtonClass exitButton = new GeneralButton(0, 40, "Exit", e -> {System.out.println("Applicatie wordt afgesloten...");thewindow.close();}, true);
-        AbstractButtonClass backButton = new GeneralButton(0, 0, "Back", e -> thewindow.setScene(chooseScene), true);
-        AbstractButtonClass backButton2 = new GeneralButton(0, 0, "Back", e -> thewindow.setScene(chooseScene), true);
-
+        FadeEffect.getFadeTransition(label1).play();
+        ScaleEffect.getScaleEffect(label1).play();
 
         /********************
          *  Begin mainMenu  *
          *******************/
 
-        BorderPane mainMenu = new BorderPane();
+        GeneralScreen mm = new GeneralScreen();
+        BorderPane mainMenu = mm.getbPane();
+        StackPane mainstack = mm.getsPane();
+
         mainMenu.getStyleClass().add("bg");
 
-        Draggable.setDraggable(mainMenu);
-
-        StackPane mainstack = new StackPane();
-
-        mainstack.getChildren().addAll(exitButton.getButton(), startButton.getButton(), label1);
+        mainstack.getChildren().addAll(new GeneralButton(0, 40, "Exit", e -> {System.out.println("Applicatie wordt afgesloten...");thewindow.close();}, true).getButton(), new GeneralButton(0, 0, "Start", e -> thewindow.setScene(chooseScene), false).getButton(), label1);
         mainMenu.setCenter(mainstack);
 
-        ToolBar MainMenubar = new ToolBar();
-        Draggable.setDraggable(MainMenubar);
-        MainMenubar.getStyleClass().add("tool");
+        ToolBar MainMenubar = mm.getTBar();
         MainMenubar.getItems().addAll(new MinimizeButton(false), new WindowToolBar().getAligner(), new CloseButton(false));
 
-
-        mainMenu.setTop(MainMenubar);
-
-        mainScene = new Scene(mainMenu, 720, 540);
+        mainScene = mm.setUpScene(mainMenu, mainstack, MainMenubar);
 
         /********************
          *  Einde mainMenu  *
@@ -138,7 +114,6 @@ public class Main extends Application {
         BarGraph b = new BarGraph(mainDataBase.getTheftYear(2009), "2009");
         BarGraph c = new BarGraph(mainDataBase.getTheftYear(2011), "2011");
 
-        AbstractButtonClass backButton1 = new GeneralButton(0, 40, "Back", e -> thewindow.setScene(mainScene), true);
         AbstractButtonClass chooseCarTheft = new GeneralButton(0, 0, "CarTheft", e -> thewindow.setScene(cartheftScene), false);
         AbstractButtonClass chooseGarage = new GeneralButton(0, -40, "Garage", e -> thewindow.setScene(garageScene), false);
 
@@ -146,14 +121,12 @@ public class Main extends Application {
          *   Diefstal Graph  *
          ********************/
 
-        cartheftScreen = new BorderPane();
-        Draggable.setDraggable(cartheftScreen);
+        GeneralScreen ct = new GeneralScreen();
+        BorderPane cartheftScreen = ct.getbPane();
         cartheftScene = new Scene(new Group(cartheftScreen));
         cartheftScreen.setMinSize(720, 540);
 
-        ToolBar menubarCartheft = new ToolBar();
-        Draggable.setDraggable(menubarCartheft);
-        menubarCartheft.getStyleClass().add("tool");
+        ToolBar menubarCartheft = ct.getTBar();
 
         cartheftScreen.setTop(menubarCartheft);
 
@@ -164,35 +137,30 @@ public class Main extends Application {
             BarChart diefstal2009 = b.getGraph();
             childerenCarTheft.add(diefstal2009);
             MouseEvents.getValueBarChart(diefstal2009, childerenCarTheft, true);
-            Main.cartheftScreen.setCenter(diefstal2009);
+            cartheftScreen.setCenter(diefstal2009);
         }, false);
         AbstractButtonClass cartheftButton2 = new GeneralButton(0, 0, "2011", e -> {
             BarChart diefstal2011 = c.getGraph();
             childerenCarTheft.add(diefstal2011);
             MouseEvents.getValueBarChart(diefstal2011, childerenCarTheft, true);
-            Main.cartheftScreen.setCenter(diefstal2011);
+            cartheftScreen.setCenter(diefstal2011);
         }, false);
 
-        menubarCartheft.getItems().addAll(backButton2.getButton(), cartheftButton1.getButton(), cartheftButton2.getButton(), new WindowToolBar().getAligner(), new MinimizeButton(true), new CloseButton(true));
+        menubarCartheft.getItems().addAll(new GeneralButton(0, 0, "Back", e -> thewindow.setScene(chooseScene), true).getButton(), cartheftButton1.getButton(), cartheftButton2.getButton(), new WindowToolBar().getAligner(), new MinimizeButton(true), new CloseButton(true));
 
         /***************************
          *      Choose Screen      *
          **************************/
 
-        BorderPane cs = new BorderPane();
-        StackPane chooseScreen = new StackPane();
-        Draggable.setDraggable(chooseScreen);
+        GeneralScreen choose = new GeneralScreen();
+        BorderPane cs = choose.getbPane();
+        StackPane chooseScreen = choose.getsPane();
+        ToolBar menubarcs = choose.getTBar();
 
-        ToolBar menubarcs = new ToolBar();
-        Draggable.setDraggable(menubarcs);
-        menubarcs.getStyleClass().add("tool");
         menubarcs.getItems().addAll(new MinimizeButton(false), new WindowToolBar().getAligner(), new CloseButton(false));
+        chooseScreen.getChildren().addAll(new GeneralButton(0, 40, "Back", e -> thewindow.setScene(mainScene), true).getButton(), chooseCarTheft.getButton(), chooseGarage.getButton());
 
-        chooseScreen.getChildren().addAll(backButton1.getButton(), chooseCarTheft.getButton(), chooseGarage.getButton());
-        cs.setCenter(chooseScreen);
-
-        cs.setTop(menubarcs);
-        chooseScene = new Scene(cs, 720, 540);
+        chooseScene = choose.setUpScene(cs, chooseScreen, menubarcs);
 
         /*******************************
          *  Interactieve Garage Graph  *
@@ -204,7 +172,7 @@ public class Main extends Application {
         ToolBar menubarGarage = new ToolBar();
         Draggable.setDraggable(menubarGarage);
         menubarGarage.getStyleClass().add("tool");
-        menubarGarage.getItems().addAll(backButton.getButton(), new WindowToolBar().getAligner(), new MinimizeButton(true), new CloseButton(true));
+        menubarGarage.getItems().addAll(new GeneralButton(0, 0, "Back", e -> thewindow.setScene(chooseScene), true).getButton(), new WindowToolBar().getAligner(), new MinimizeButton(true), new CloseButton(true));
 
         garageScene = new Scene(new Group(garageScreen));
         garageScreen.setMinSize(720, 540);
@@ -241,27 +209,21 @@ public class Main extends Application {
             i.setFill(Color.TRANSPARENT);
         }
 
-        ft.play();
-
         thewindow.setScene(mainScene);
 
-        //      window.setFullScreen(true);
+        // window.setFullScreen(true);
 
-        //Haalt de "press escape to exit" message weg
-//        window.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+        // Haalt de "press escape to exit" message weg
+        // window.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
 
         thewindow.show();
 
-        Intro intro = new Intro();
-        intro.playit();
     }
-
 
     //Hier runnen we het programma;
     public static void main(String[] args) {
         System.out.println("Data application version " + versionNumber + " successfully launched!");
         launch(args);
     }
-
 
 }
