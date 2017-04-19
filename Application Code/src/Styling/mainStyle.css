@@ -3,14 +3,21 @@
 }
 
 .bg {
-    -fx-background-image: url("http://img.pixady.com/2017/04/692860_about3.png");
+    -fx-background-image: url("/Styling/bg_2.png");
+    -fx-background-size: 100%;
+    -fx-background-position: center center;
+    -fx-background-radius: 6;
+}
+
+.bg2 {
+    -fx-background-image: url("/Styling/about3.png");
     -fx-background-size: 100%;
     -fx-background-position: center center;
     -fx-background-radius: 6;
 }
 
 #closebutton:hover {
-    -fx-background-image: url("http://img.pixady.com/2017/04/692860_about3.png");
+    /*-fx-background-image: url("http://img.pixady.com/2017/04/692860_about3.png");*/
     -fx-border-color: #990033;
     -fx-border-image-width: 1px;
     -fx-highlight-fill: #5fba7d;

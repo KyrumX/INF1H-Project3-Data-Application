@@ -11,10 +11,7 @@ import Graphs.BarGraph;
 import Graphs.PieGraph;
 import Modifications.Draggable;
 
-import Tools.CloseButton;
-import Tools.GeneralScreen;
-import Tools.MinimizeButton;
-import Tools.WindowToolBar;
+import Tools.*;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 
@@ -25,11 +22,14 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -41,7 +41,7 @@ import java.util.List;
  * .gitignore has been instructed to ignore certain files.
  * This file will act as the Main file, we will call all code from this file.
  *
- * TODO: get maximize screen button working, icon for program, fade-out when minimizing, initial info scene cartheftscene
+ * TODO: get maximize screen button working, fade-out when minimizing
  */
 
 public class Main extends Application {
@@ -73,23 +73,21 @@ public class Main extends Application {
 
         window = primaryStage;
         window.initStyle(StageStyle.UNDECORATED);
-
+        Image icon = new Image(Main.class.getResourceAsStream("icon.png"));
         thewindow = new Stage(StageStyle.TRANSPARENT);
         thewindow.setTitle("Data Application");
+        thewindow.getIcons().add(icon);
 
         Label label1 = new Label("DATA APPLICATION");
-        label1.setTranslateY(-75);
-        label1.setTranslateX(10);
+        label1.setTranslateY(-175);
+        label1.setTranslateX(0);
         label1.setEffect(new Shadoweffect(0.5).getShadow());
-
-        AbstractButtonClass aboutButton = new GeneralButton(0, 40, "About", e -> thewindow.setScene(aboutScene), false);
-        AbstractButtonClass creditsButton = new GeneralButton(0, 80, "Credits", e -> thewindow.setScene(creditsScene), false);
 
         FadeEffect.getFadeTransition(label1).play();
         ScaleEffect.getScaleEffect(label1).play();
 
         /********************
-         *  Begin mainMenu  *
+         *  Begin MainMenu  *
          *******************/
 
         GeneralScreen mm = new GeneralScreen();
@@ -98,24 +96,68 @@ public class Main extends Application {
 
         mainMenu.getStyleClass().add("bg");
 
-        mainstack.getChildren().addAll(new GeneralButton(0, 40, "Exit", e -> {System.out.println("Applicatie wordt afgesloten...");thewindow.close();}, true).getButton(), new GeneralButton(0, 0, "Start", e -> thewindow.setScene(chooseScene), false).getButton(), creditsButton.getButton(), aboutButton.getButton(), label1);
+        mainstack.getChildren().addAll(new GeneralButton(0, -90, "Start", e -> thewindow.setScene(chooseScene), false).getButton(), new GeneralButton(0, 50, "Credits", e -> thewindow.setScene(creditsScene), false).getButton(), new GeneralButton(0, -20, "About", e -> thewindow.setScene(aboutScene), false).getButton(), new GeneralButton(0, 120, "Exit", e -> {System.out.println("Applicatie wordt afgesloten...");thewindow.close();}, true).getButton(), label1);
         mainMenu.setCenter(mainstack);
 
         ToolBar MainMenubar = mm.getTBar();
-        MainMenubar.getItems().addAll(new MinimizeButton(false), new WindowToolBar().getAligner(), new CloseButton(false));
+        MainMenubar.getItems().addAll(new Icon(), new WindowToolBar().getAligner(), new MinimizeButton(false), new CloseButton(false));
 
         mainScene = mm.setUpScene(mainMenu, mainstack, MainMenubar);
 
-        BorderPane aboutScreen = new BorderPane();
-        aboutScene = new Scene(aboutScreen, 720, 540);
+        /********************
+         *  About Screen    *a-neue");
+        aboutlabel.setTranslateX(10);
+         *******************/
+        Label abouttitle = new Label();
+        abouttitle.setEffect(new Shadoweffect(0.1).getShadow());
+        abouttitle.setText("About Program");
+        abouttitle.setTranslateY(-180);
+        abouttitle.setStyle("-fx-font-size: 30; -fx-font-family: Helvetica-neue");
+        Label aboutlabel = new Label();
+        aboutlabel.setTranslateY(18);
+        aboutlabel.setWrapText(true);
+        aboutlabel.setMaxWidth(400);
+        aboutlabel.setStyle("-fx-font-size: 15; -fx-font-family: Helvetica-neue");
+        aboutlabel.setText("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui.");
 
-        BorderPane creditsScreen = new BorderPane();
-        aboutScene = new Scene(creditsScreen, 720, 540);
+        GeneralScreen about = new GeneralScreen();
+        BorderPane as = about.getbPane();
+        StackPane aboutScreen = about.getsPane();
+        ToolBar aboutbar = about.getTBar();
 
+        aboutbar.getItems().addAll(new Icon(), new WindowToolBar().getAligner(), new MinimizeButton(false), new CloseButton(false));
+        aboutScreen.getChildren().addAll(new GeneralButton(0, 220, "Back", e -> thewindow.setScene(mainScene), true).getButton(), abouttitle, aboutlabel);
+
+        aboutScene = about.setUpScene(as, aboutScreen, aboutbar);
 
         /********************
-         *  Einde mainMenu  *
+         *  Credits Screen  *
          *******************/
+        Label creditstitle = new Label();
+        creditstitle.setEffect(new Shadoweffect(0.5).getShadow());
+        creditstitle.setText("Credits");
+        creditstitle.setTranslateY(-180);
+        Label creditslabel = new Label();
+        creditslabel.setTranslateY(18);
+        creditslabel.setWrapText(true);
+        creditslabel.setMaxWidth(400);
+        creditslabel.setStyle("-fx-font-size: 15; -fx-font-family: Helvetica-neue");
+        creditslabel.setTranslateX(10);
+        creditslabel.setText("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui.");
+
+        GeneralScreen credits = new GeneralScreen();
+        BorderPane creditsScreen = credits.getbPane();
+        StackPane creditspane = credits.getsPane();
+        ToolBar creditsbar = credits.getTBar();
+
+        creditsbar.getItems().addAll(new Icon(), new WindowToolBar().getAligner(), new MinimizeButton(false), new CloseButton(false));
+        creditspane.getChildren().addAll(new GeneralButton(0, 220, "Back", e -> thewindow.setScene(mainScene), true).getButton(), creditstitle, creditslabel);
+
+        creditsScene = credits.setUpScene(creditsScreen, creditspane, creditsbar);
+
+        /************************
+         *  Database Verbinding *
+         ***********************/
 
         ConnectDatabase mainDataBase = new ConnectDatabase();
         mainDataBase.connect();
@@ -123,9 +165,6 @@ public class Main extends Application {
         PieGraph g = new PieGraph(mainDataBase.getGarages(), "Garages per deelgemeenten");
         BarGraph b = new BarGraph(mainDataBase.getTheftYear(2009), "2009");
         BarGraph c = new BarGraph(mainDataBase.getTheftYear(2011), "2011");
-
-        AbstractButtonClass chooseCarTheft = new GeneralButton(0, 0, "CarTheft", e -> thewindow.setScene(cartheftScene), false);
-        AbstractButtonClass chooseGarage = new GeneralButton(0, -40, "Garage", e -> thewindow.setScene(garageScene), false);
 
         /*********************
          *   Diefstal Graph  *
@@ -143,32 +182,40 @@ public class Main extends Application {
         final ObservableList<Node> childerenCarTheft = ((Group) cartheftScene.getRoot()).getChildren();
 
         //Buttons op de auto diefstal page
-        AbstractButtonClass cartheftButton1 = new GeneralButton(0, 0, "2009", e -> {
+        GeneralButton cartheftButton1 = new GeneralButton(10, 0, "2009", e -> {
             BarChart diefstal2009 = b.getGraph();
             childerenCarTheft.add(diefstal2009);
             MouseEvents.getValueBarChart(diefstal2009, childerenCarTheft, true);
             cartheftScreen.setCenter(diefstal2009);
         }, false);
-        AbstractButtonClass cartheftButton2 = new GeneralButton(0, 0, "2011", e -> {
+
+
+        GeneralButton cartheftButton2 = new GeneralButton(20, 0, "2011", e -> {
             BarChart diefstal2011 = c.getGraph();
             childerenCarTheft.add(diefstal2011);
             MouseEvents.getValueBarChart(diefstal2011, childerenCarTheft, true);
             cartheftScreen.setCenter(diefstal2011);
         }, false);
 
-        menubarCartheft.getItems().addAll(new GeneralButton(0, 0, "Back", e -> thewindow.setScene(chooseScene), true).getButton(), cartheftButton1.getButton(), cartheftButton2.getButton(), new WindowToolBar().getAligner(), new MinimizeButton(true), new CloseButton(true));
+        menubarCartheft.getItems().addAll(new Icon(), new GeneralButton(0, 0, "Back", e -> thewindow.setScene(chooseScene), true).getButton(), cartheftButton1.getButton(), cartheftButton2.getButton(), new WindowToolBar().getAligner(), new MinimizeButton(true), new CloseButton(true));
 
         /***************************
          *      Choose Screen      *
          **************************/
+
+        Label chooselabel = new Label("Keuzemenu");
+        chooselabel.setStyle("-fx-font-family: Helvetica-neue; -fx-font-size: 40;");
+        chooselabel.setTranslateY(-175);
+        chooselabel.setTranslateX(0);
+        chooselabel.setEffect(new Shadoweffect(0.5).getShadow());
 
         GeneralScreen choose = new GeneralScreen();
         BorderPane cs = choose.getbPane();
         StackPane chooseScreen = choose.getsPane();
         ToolBar menubarcs = choose.getTBar();
 
-        menubarcs.getItems().addAll(new MinimizeButton(false), new WindowToolBar().getAligner(), new CloseButton(false));
-        chooseScreen.getChildren().addAll(new GeneralButton(0, 40, "Back", e -> thewindow.setScene(mainScene), true).getButton(), chooseCarTheft.getButton(), chooseGarage.getButton());
+        menubarcs.getItems().addAll(new Icon(), new WindowToolBar().getAligner(), new MinimizeButton(false), new CloseButton(false));
+        chooseScreen.getChildren().addAll(new GeneralButton(0, 110, "Back", e -> thewindow.setScene(mainScene), true).getButton(), new GeneralButton(0, 20, "CarTheft", e -> thewindow.setScene(cartheftScene), false).getButton(), new GeneralButton(0, -70, "Garage", e -> thewindow.setScene(garageScene), false).getButton(), chooselabel);
 
         chooseScene = choose.setUpScene(cs, chooseScreen, menubarcs);
 
@@ -179,10 +226,17 @@ public class Main extends Application {
         BorderPane garageScreen = new BorderPane();
         Draggable.setDraggable(garageScreen);
 
+        GeneralButton backbutton = new GeneralButton(0, 0, "Back", e -> thewindow.setScene(chooseScene), true);
+//        backbutton.setSize(80, 30);
+        Button bb = backbutton.getButton();
+//        bb.setTranslateX(290);
+        bb.setTranslateX(230);
+        bb.setTranslateY(-1);
+
         ToolBar menubarGarage = new ToolBar();
         Draggable.setDraggable(menubarGarage);
         menubarGarage.getStyleClass().add("tool");
-        menubarGarage.getItems().addAll(new GeneralButton(0, 0, "Back", e -> thewindow.setScene(chooseScene), true).getButton(), new WindowToolBar().getAligner(), new MinimizeButton(true), new CloseButton(true));
+        menubarGarage.getItems().addAll(new Icon(), backbutton.getButton(), new WindowToolBar().getAligner(), new MinimizeButton(true), new CloseButton(true));
 
         garageScene = new Scene(new Group(garageScreen));
         garageScreen.setMinSize(720, 540);
@@ -203,9 +257,14 @@ public class Main extends Application {
          ***************************/
 
         cs.getStylesheets().add("Styling/mainStyle.css");
-        cartheftScreen.getStyleClass().add("bg");
-        garageScreen.getStyleClass().add("bg");
         cs.getStyleClass().add("bg");
+        as.getStylesheets().add("Styling/mainStyle.css");
+        as.getStyleClass().add("bg");
+
+        cartheftScreen.getStyleClass().add("bg2");
+        garageScreen.getStyleClass().add("bg2");
+        creditsScreen.getStyleClass().add("bg");
+        creditsScreen.getStyleClass().add("bg");
 
 
         List<Scene> l = new ArrayList<>();
@@ -213,6 +272,8 @@ public class Main extends Application {
         l.add(chooseScene);
         l.add(cartheftScene);
         l.add(garageScene);
+        l.add(aboutScene);
+        l.add(creditsScene);
 
         for (Scene i: l){
             i.getStylesheets().add("Styling/mainStyle.css");
