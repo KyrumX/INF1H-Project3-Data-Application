@@ -1,9 +1,10 @@
 package Events;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import Database.ConnectDatabase;
+
+import java.io.*;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  * Created by Aaron on 16-4-2017.
@@ -11,15 +12,19 @@ import java.io.IOException;
 public class CSVReader {
     public static void main(String[] args) {
 
-        String csvFile = "C:/Users/Aaron/Downloads/parking.csv";
+        String csvFile = "C:/Users/Ryan Wilson/Downloads/parking.csv";        //Verander de naam van de User naar je eigen naam
         BufferedReader br = null;
         String line = "";
+        String a = null;
+        int b =  0;
+        int c =  0;
 
         //Soort seperator gebruikt in CSV file, in dit geval een ';'
         String cvsSplitBy = ";";
 
         try {
-
+            ConnectDatabase DataBase = new ConnectDatabase();
+            DataBase.connect();
             br = new BufferedReader(new FileReader(csvFile));
             br.readLine();
             while ((line = br.readLine()) != null) {
@@ -27,8 +32,12 @@ public class CSVReader {
                 String[] lineSplitter = line.split(cvsSplitBy);
 
                 //Pak het vierde en vijfde item van elke regel, de naam van de garage en de code
-                System.out.println("Naam van de garage: " + lineSplitter[3] + ", de code van de garage= " + lineSplitter[4]);
+                System.out.println("Naam van de garage: " + lineSplitter[3] + ", Longditude: " + lineSplitter[2] + ", Latitude: " + lineSplitter[1]);
+                a = lineSplitter[3];
+                float b2 = Float.parseFloat(lineSplitter[2]);
+                float c2 = Float.parseFloat(lineSplitter[1]);
 
+                DataBase.parser(a, b2, c2);
             }
 
         } catch (FileNotFoundException e) {
