@@ -118,7 +118,9 @@ public class Main extends Application {
         aboutlabel.setWrapText(true);
         aboutlabel.setMaxWidth(400);
         aboutlabel.setStyle("-fx-font-size: 15; -fx-font-family: Helvetica-neue");
-        aboutlabel.setText("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui.");
+        aboutlabel.setText("Slachtofferschap autodiefstal – percentage bewoners (15 jaar en ouder) met een auto\n" +
+                "dat heeft aangegeven dat zij het afgelopen jaar zelf slachtoffer zijn geworden in de eigen\n" +
+                "buurt van autodiefstal");
 
         GeneralScreen about = new GeneralScreen();
         BorderPane as = about.getbPane();
@@ -143,7 +145,7 @@ public class Main extends Application {
         creditslabel.setMaxWidth(400);
         creditslabel.setStyle("-fx-font-size: 15; -fx-font-family: Helvetica-neue");
         creditslabel.setTranslateX(10);
-        creditslabel.setText("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui.");
+        creditslabel.setText("Aaron Beetstra: Development Team\n - Graph code, connection with the database, uml diagrams.\n Ralph Verburg: Development Team\n - Menu code, buttons code, basic scene building.\n Mark Stout: Development team\n - Create Database, SQL, UML diagram.\n Selim Aydi: Development Team\n - CSS, styling, effects code, tools code.\n Ryan Wilson: Scrum Master\n - Scrum tasks, CSV parser, ERD and RM diagram.");
 
         GeneralScreen credits = new GeneralScreen();
         BorderPane creditsScreen = credits.getbPane();
@@ -197,13 +199,13 @@ public class Main extends Application {
             cartheftScreen.setCenter(diefstal2011);
         }, false);
 
-        menubarCartheft.getItems().addAll(new Icon(), new GeneralButton(0, 0, "Back", e -> thewindow.setScene(chooseScene), true).getButton(), cartheftButton1.getButton(), cartheftButton2.getButton(), new WindowToolBar().getAligner(), new MinimizeButton(true), new CloseButton(true));
+        menubarCartheft.getItems().addAll(new Icon(), new GeneralButton(0, 0, "Back", e -> {thewindow.setScene(chooseScene); cartheftScreen.setCenter(null);}, true).getButton(), cartheftButton1.getButton(), cartheftButton2.getButton(), new WindowToolBar().getAligner(), new MinimizeButton(true), new CloseButton(true));
 
         /***************************
          *      Choose Screen      *
          **************************/
 
-        Label chooselabel = new Label("Keuzemenu");
+        Label chooselabel = new Label("Menu");
         chooselabel.setStyle("-fx-font-family: Helvetica-neue; -fx-font-size: 40;");
         chooselabel.setTranslateY(-175);
         chooselabel.setTranslateX(0);
@@ -215,7 +217,7 @@ public class Main extends Application {
         ToolBar menubarcs = choose.getTBar();
 
         menubarcs.getItems().addAll(new Icon(), new WindowToolBar().getAligner(), new MinimizeButton(false), new CloseButton(false));
-        chooseScreen.getChildren().addAll(new GeneralButton(0, 110, "Back", e -> thewindow.setScene(mainScene), true).getButton(), new GeneralButton(0, 20, "CarTheft", e -> thewindow.setScene(cartheftScene), false).getButton(), new GeneralButton(0, -70, "Garage", e -> thewindow.setScene(garageScene), false).getButton(), chooselabel);
+        chooseScreen.getChildren().addAll(new GeneralButton(0, 110, "Back", e -> thewindow.setScene(mainScene), true).getButton(), new GeneralButton(0, 20, "CarTheftInfo", e -> thewindow.setScene(cartheftScene), false).getButton(), new GeneralButton(0, -70, "GarageInfo", e -> thewindow.setScene(garageScene), false).getButton(), chooselabel);
 
         chooseScene = choose.setUpScene(cs, chooseScreen, menubarcs);
 

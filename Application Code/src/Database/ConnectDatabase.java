@@ -7,7 +7,7 @@ import java.util.HashMap;
  * Created by aaron on 5-4-2017.
  */
 public class ConnectDatabase {
-    private final String url = "jdbc:postgresql://localhost:5433/Project3";
+    private final String url = "jdbc:postgresql://localhost/Project3";
     private final String user = "postgres";
     private final String password = "kaas123";
     private Connection conn;
