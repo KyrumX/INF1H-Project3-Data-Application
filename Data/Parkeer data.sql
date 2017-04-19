@@ -4,7 +4,7 @@ VALUES
 ('St.Jacobsplaats',		'51.92410235',	'4.482054381',		'stadscentrum'),
 ('Schouwburgplein',		'51.92102728',	'4.473618335',		'stadscentrum'),
 ('Erasmus MC',			'51.9106444',	'4.470202513',		'stadscentrum'),
-('Museumpark',			'51.91353858',	'4.471392875',		'stadsccentrum'),
+('Museumpark',			'51.91353858',	'4.471392875',		'stadscentrum'),
 ('Beverwaard',			'51.88467692',	'4.566664696',		'ijsselmonde'),
 ('Meijersplein',		'51.95669663',	'4.460062981',		'overschie'),
 ('Weena',					'51.9229085',	'4.474601678',		'stadscentrum'),
