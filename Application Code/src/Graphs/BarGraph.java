@@ -24,14 +24,16 @@ public class BarGraph {
 
     public BarGraph(HashMap<String, Double> chartData, String deelGemeente) {
 
+        //Nieuwe x en y assen worden aangemaakt en toegevoegd aan een BarChart;
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();
         final BarChart<String,Number> barGraph =
                 new BarChart<String,Number>(xAxis,yAxis);
         barGraph.setTitle("Percentage autodiefstal");
-        xAxis.setLabel("Deelgemeente: " + deelGemeente);
+        xAxis.setLabel("");
         yAxis.setLabel("Procent");
 
+        //Loop door de HashMap en vul de chart;
         for (String item : chartData.keySet()) {
             XYChart.Series series = new XYChart.Series();
             series.setName(item);
@@ -39,7 +41,6 @@ public class BarGraph {
             barGraph.getData().addAll(series);
         }
         barGraph.setLegendSide(Side.LEFT);
-        barGraph.setId("test");
         chart = barGraph;
 
     }
