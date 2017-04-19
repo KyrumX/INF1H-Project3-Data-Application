@@ -145,7 +145,7 @@ public class Main extends Application {
         creditslabel.setMaxWidth(400);
         creditslabel.setStyle("-fx-font-size: 15; -fx-font-family: Helvetica-neue");
         creditslabel.setTranslateX(10);
-        creditslabel.setText("Aaron Beetstra: Development Team\n - Graph code, connection with the database, uml diagrams.\n Ralph Verburg: Development Team\n - Menu code, buttons code, basic scene building.\n Mark Stout: Development team\n - Create Database, SQL, UML diagram.\n Selim Aydi: Development Team\n - CSS, Styling, Effects.\n Ryan Wilson: Scrum Master\n - Scrum tasks, CSV parser, ERD and RM diagram.");
+        creditslabel.setText("Aaron Beetstra: Development Team\n - Graph code, connection with the database, uml diagrams.\n Ralph Verburg: Development Team\n - Menu code, buttons code, basic scene building.\n Mark Stout: Development team\n - Create Database, SQL, UML diagram.\n Selim Aydi: Development Team\n - CSS, styling, effects code, tools code.\n Ryan Wilson: Scrum Master\n - Scrum tasks, CSV parser, ERD and RM diagram.");
 
         GeneralScreen credits = new GeneralScreen();
         BorderPane creditsScreen = credits.getbPane();
@@ -199,7 +199,7 @@ public class Main extends Application {
             cartheftScreen.setCenter(diefstal2011);
         }, false);
 
-        menubarCartheft.getItems().addAll(new Icon(), new GeneralButton(0, 0, "Back", e -> thewindow.setScene(chooseScene), true).getButton(), cartheftButton1.getButton(), cartheftButton2.getButton(), new WindowToolBar().getAligner(), new MinimizeButton(true), new CloseButton(true));
+        menubarCartheft.getItems().addAll(new Icon(), new GeneralButton(0, 0, "Back", e -> {thewindow.setScene(chooseScene); cartheftScreen.setCenter(null);}, true).getButton(), cartheftButton1.getButton(), cartheftButton2.getButton(), new WindowToolBar().getAligner(), new MinimizeButton(true), new CloseButton(true));
 
         /***************************
          *      Choose Screen      *
