@@ -16,6 +16,7 @@ public class PieGraph {
         PieChart pieChart = new PieChart();
         pieChart.setTitle(titel);
 
+        //Loop door de HashMap en vul de Graph met data;
         for (Map.Entry<String, Double> entry : chartData.entrySet()) {
             pieChart.getData().add(new PieChart.Data(entry.getKey(), entry.getValue()));
 
