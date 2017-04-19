@@ -51,21 +51,7 @@ public class Main extends Application {
     public static BorderPane mainMenu, garageScreen;
     public static Stage thewindow;
 
-    //Bepalen van de State van het programma;
-    private enum StateL{
-        MAIN,
-        J2012,
-        J2009
-    }
-
-    private StateL currentState = StateL.MAIN;
-
     //Methodes:
-
-    //Deze methode laadt alle nodige files;
-    protected void loadFiles() {
-        //Hier laden we alle files zoals afbeeldingen;
-    }
 
     @Override
     public void start(Stage primaryStage) {
