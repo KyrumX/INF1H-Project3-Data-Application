@@ -21,7 +21,6 @@ public class MinimizeButton extends HBox {
         ImageView iv1 = new ImageView();
         iv1.setId("closebutton");
         iv1.setImage(image);
-        iv1.setImage(image);
         iv1.setFitWidth(17);
         iv1.setPreserveRatio(true);
         iv1.setSmooth(true);

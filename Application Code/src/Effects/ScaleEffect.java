@@ -9,19 +9,19 @@ import javafx.util.Duration;
  * Created by Selim on 14/4/2017.
  */
 public final class ScaleEffect {
-    private ScaleTransition st;
-    public ScaleEffect(Label label){
-        this.st = new ScaleTransition();
-        this.st.setNode(label);
-        this.st.setFromX(1.0);
-        this.st.setFromY(1.0);
-        this.st.setToX(1.3);
-        this.st.setToY(1.3);
-        this.st.setCycleCount(-1);
-        this.st.setDuration(new Duration(4000));
-        this.st.setAutoReverse(true);
+    private static ScaleTransition st;
+    public ScaleEffect(){
     }
-    public ScaleTransition getScaleEffect(){
-        return this.st;
+    public static ScaleTransition getScaleEffect(Label label){
+        st = new ScaleTransition();
+        st.setNode(label);
+        st.setFromX(1.0);
+        st.setFromY(1.0);
+        st.setToX(1.3);
+        st.setToY(1.3);
+        st.setCycleCount(-1);
+        st.setDuration(new Duration(4000));
+        st.setAutoReverse(true);
+        return st;
     }
 }
