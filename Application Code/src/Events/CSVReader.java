@@ -21,6 +21,7 @@ public class CSVReader {
         try {
 
             br = new BufferedReader(new FileReader(csvFile));
+            br.readLine();
             while ((line = br.readLine()) != null) {
 
                 String[] lineSplitter = line.split(cvsSplitBy);
