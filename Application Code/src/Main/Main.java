@@ -55,7 +55,7 @@ public class Main extends Application {
 
         window = primaryStage;
         window.initStyle(StageStyle.UNDECORATED);
-        Image icon = new Image(Main.class.getResourceAsStream("icon.png"));
+        Image icon = new Image(Main.class.getResourceAsStream("/icon.png"));
         thewindow = new Stage(StageStyle.TRANSPARENT);
         thewindow.setTitle("Data Application");
         thewindow.getIcons().add(icon);
