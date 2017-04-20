@@ -22,7 +22,7 @@ import java.util.HashMap;
 public class BarGraph {
     public BarChart<String,Number> chart;
 
-    public BarGraph(HashMap<String, Double> chartData, String deelGemeente) {
+    public BarGraph(HashMap<String, Double> chartData) {
 
         //Nieuwe x en y assen worden aangemaakt en toegevoegd aan een BarChart;
         final CategoryAxis xAxis = new CategoryAxis();
@@ -30,8 +30,8 @@ public class BarGraph {
         final BarChart<String,Number> barGraph =
                 new BarChart<String,Number>(xAxis,yAxis);
         barGraph.setTitle("Percentage of car thefts victems");
-        xAxis.setLabel("");
-        yAxis.setLabel("Procent");
+        xAxis.setLabel("City District");
+        yAxis.setLabel("Percentage");
 
         //Loop door de HashMap en vul de chart;
         for (String item : chartData.keySet()) {
