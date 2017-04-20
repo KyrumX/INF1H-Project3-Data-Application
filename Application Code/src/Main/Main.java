@@ -146,7 +146,7 @@ public class Main extends Application {
         ConnectDatabase mainDataBase = new ConnectDatabase();
         mainDataBase.connect();
 
-        PieGraph g = new PieGraph(mainDataBase.getGarages(), "Garages per city district");
+        PieGraph g = new PieGraph(mainDataBase.getGarages(), "Garages by city district");
         BarGraph b = new BarGraph(mainDataBase.getTheftYear(2009));
         BarGraph c = new BarGraph(mainDataBase.getTheftYear(2011));
 
