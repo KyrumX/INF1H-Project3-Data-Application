@@ -29,7 +29,7 @@ public class BarGraph {
         final NumberAxis yAxis = new NumberAxis();
         final BarChart<String,Number> barGraph =
                 new BarChart<String,Number>(xAxis,yAxis);
-        barGraph.setTitle("Percentage autodiefstal");
+        barGraph.setTitle("Percentage of car thefts victems");
         xAxis.setLabel("");
         yAxis.setLabel("Procent");
 
