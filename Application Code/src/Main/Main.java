@@ -104,9 +104,9 @@ public class Main extends Application {
         aboutlabel.setWrapText(true);
         aboutlabel.setMaxWidth(400);
         aboutlabel.setStyle("-fx-font-size: 15; -fx-font-family: Helvetica-neue");
-        aboutlabel.setText("Slachtofferschap autodiefstal – percentage bewoners (15 jaar en ouder) met een auto\n" +
-                "dat heeft aangegeven dat zij het afgelopen jaar zelf slachtoffer zijn geworden in de eigen\n" +
-                "buurt van autodiefstal");
+        aboutlabel.setText("This application shows info in the form of graphs about the amount of garages and car theft in Rotterdam. \n" +
+                "The garage page shows the amount of garages per city district in the form of a pie graph.\n" +
+                "The car theft page shows the percentage of citizens(15 years and older) per district with a car who have dealt with car theft. This info can be seen from the year 2009 and 2011 in the form of a bar graph.  \n");
 
         GeneralScreen about = new GeneralScreen();
         BorderPane as = about.getbPane();
@@ -150,7 +150,7 @@ public class Main extends Application {
         ConnectDatabase mainDataBase = new ConnectDatabase();
         mainDataBase.connect();
 
-        PieGraph g = new PieGraph(mainDataBase.getGarages(), "Garages per deelgemeenten");
+        PieGraph g = new PieGraph(mainDataBase.getGarages(), "Garages per city district");
         BarGraph b = new BarGraph(mainDataBase.getTheftYear(2009), "2009");
         BarGraph c = new BarGraph(mainDataBase.getTheftYear(2011), "2011");
 
@@ -269,11 +269,6 @@ public class Main extends Application {
         }
 
         thewindow.setScene(mainScene);
-
-        // window.setFullScreen(true);
-
-        // Haalt de "press escape to exit" message weg
-        // window.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
 
         thewindow.show();
 
