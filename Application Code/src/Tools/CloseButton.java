@@ -13,7 +13,7 @@ import javafx.scene.layout.HBox;
  */
 public class CloseButton extends HBox {
     public CloseButton(boolean isShifted) {
-        Image image = new Image("/Styling/closebutton.png");
+        Image image = new Image("/closebutton.png");
         ImageView iv1 = new ImageView();
         iv1.setId("closebutton");
         iv1.setImage(image);

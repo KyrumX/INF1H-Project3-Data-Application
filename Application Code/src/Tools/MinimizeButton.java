@@ -1,6 +1,5 @@
 package Tools;
 
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
@@ -8,8 +7,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
-import static Main.Main.garageScreen;
-import static Main.Main.mainMenu;
 import static Main.Main.thewindow;
 
 /**
@@ -17,7 +14,7 @@ import static Main.Main.thewindow;
  */
 public class MinimizeButton extends HBox {
     public MinimizeButton(boolean isShifted) {
-        Image image = new Image("/Styling/minimize.png");
+        Image image = new Image("/minimize.png");
         ImageView iv1 = new ImageView();
         iv1.setId("closebutton");
         iv1.setImage(image);
