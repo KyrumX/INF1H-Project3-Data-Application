@@ -151,8 +151,8 @@ public class Main extends Application {
         mainDataBase.connect();
 
         PieGraph g = new PieGraph(mainDataBase.getGarages(), "Garages per city district");
-        BarGraph b = new BarGraph(mainDataBase.getTheftYear(2009), "2009");
-        BarGraph c = new BarGraph(mainDataBase.getTheftYear(2011), "2011");
+        BarGraph b = new BarGraph(mainDataBase.getTheftYear(2009));
+        BarGraph c = new BarGraph(mainDataBase.getTheftYear(2011));
 
         /*********************
          *   Diefstal Graph  *
