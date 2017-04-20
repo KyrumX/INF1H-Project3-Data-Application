@@ -12,6 +12,7 @@ public class ConnectDatabase {
     private final String password = "kaas123";
     private Connection conn;
 
+    //De constructor returnt een database connectie.
     public Connection connect() {
         Connection conn = null;
         try {
@@ -25,6 +26,7 @@ public class ConnectDatabase {
         return conn;
     }
 
+    //Deze functie geeft een HashMap terug waarvan je een Graph kan maken.
     public HashMap getGarages() {
         HashMap<String, Double> newHashMap = new HashMap<String, Double>();
         try {
@@ -44,6 +46,7 @@ public class ConnectDatabase {
         return newHashMap;
     }
 
+    //Deze functie geeft een HashMap terug waarvan je een Graph kan maken.
     public HashMap getTheftYear(int year) {
         HashMap<String, Double> newHashMap = new HashMap<String, Double>();
         try {

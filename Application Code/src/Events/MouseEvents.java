@@ -16,15 +16,9 @@ import javafx.scene.input.MouseEvent;
  * Created by aaron on 4-4-2017.
  */
 
-public class MouseEvents implements EventHandler<ActionEvent> {
-    public static boolean isHovering = false;
-    @Override
-    public void handle(ActionEvent event) {
-    }
+public class MouseEvents {
 
-    public static void getChoice(ChoiceBox<String> ChoiceYear) {
-    }
-
+    //Methode waardoor je kan interacten met een PieGraph.
     public static void getValuePieChart(PieChart chart, ObservableList<Node> children, boolean isProcent) {
         final Label numberCaption = new Label("     ");
         numberCaption.setStyle("-fx-font: 24 arial;");
@@ -55,6 +49,7 @@ public class MouseEvents implements EventHandler<ActionEvent> {
         }
     }
 
+    //Methode waardoor je kunt interacten met een BarGraph.
     public static void getValueBarChart(BarChart<String,Number> chart, ObservableList<Node> children, boolean isProcent) {
         final Label numberCaption = new Label("     ");
         numberCaption.setStyle("-fx-font: 24 arial;");
