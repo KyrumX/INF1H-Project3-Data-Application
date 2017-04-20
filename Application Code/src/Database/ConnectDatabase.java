@@ -2,6 +2,8 @@ package Database;
 
 import java.sql.*;
 import java.util.HashMap;
+import java.sql.SQLException;
+
 
 /**
  * Created by aaron on 5-4-2017.
@@ -12,7 +14,6 @@ public class ConnectDatabase {
     private final String password = "kaas123";
     private Connection conn;
 
-    //De constructor returnt een database connectie.
     public Connection connect() {
         Connection conn = null;
         try {
@@ -26,7 +27,6 @@ public class ConnectDatabase {
         return conn;
     }
 
-    //Deze functie geeft een HashMap terug waarvan je een Graph kan maken.
     public HashMap getGarages() {
         HashMap<String, Double> newHashMap = new HashMap<String, Double>();
         try {
@@ -34,7 +34,7 @@ public class ConnectDatabase {
             ResultSet rs;
 
             rs = stmt.executeQuery("SELECT deelgemeente, COUNT(garagenaam) FROM garages GROUP BY deelgemeente");
-            while ( rs.next() ) {
+            while (rs.next()) {
                 String deelGemeenteNaam = rs.getString("deelgemeente");
                 double garageNaamCount = rs.getDouble("COUNT");
                 newHashMap.put(deelGemeenteNaam, garageNaamCount);
@@ -46,7 +46,6 @@ public class ConnectDatabase {
         return newHashMap;
     }
 
-    //Deze functie geeft een HashMap terug waarvan je een Graph kan maken.
     public HashMap getTheftYear(int year) {
         HashMap<String, Double> newHashMap = new HashMap<String, Double>();
         try {
@@ -54,7 +53,7 @@ public class ConnectDatabase {
             ResultSet rs;
 
             rs = stmt.executeQuery("SELECT deelgemeente, percentagediefstal FROM autodiefstal WHERE jaar = " + year);
-            while ( rs.next() ) {
+            while (rs.next()) {
                 String deelGemeenteNaam = rs.getString("deelgemeente");
                 double deelPercentage = rs.getDouble("percentagediefstal");
                 newHashMap.put(deelGemeenteNaam, deelPercentage);
@@ -64,5 +63,47 @@ public class ConnectDatabase {
             System.err.println(e.getMessage());
         }
         return newHashMap;
+    }
+
+    public int parser(String a, float b2, float c2) {
+        int updated = 0;
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+
+            conn = DriverManager.getConnection(url, user, password);
+
+            String insertSQL = "INSERT INTO testparser(garagenaam, xpos, ypos) VALUES(?, ? ,?)";
+            stmt = conn.prepareStatement(insertSQL);
+
+            stmt.setString(1, a);
+            stmt.setFloat(2, b2);
+            stmt.setFloat(3, c2);
+
+            System.out.println("Inserted data into the database...");
+            updated = stmt.executeUpdate();
+
+
+
+        } catch (SQLException se) {
+            se.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (stmt != null)
+                    conn.close();
+            } catch (SQLException se) {
+            }
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
+        this.conn = conn;
+        return updated;
+
     }
 }
