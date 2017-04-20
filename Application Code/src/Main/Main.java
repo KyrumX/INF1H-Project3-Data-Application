@@ -48,7 +48,6 @@ public class Main extends Application {
     private static double versionNumber = 1.0;
     public static Stage window;
     private static Scene mainScene, garageScene, chooseScene, cartheftScene, aboutScene, creditsScene;
-    public static BorderPane mainMenu, garageScreen;
     public static Stage thewindow;
 
     //Methodes:
@@ -215,9 +214,7 @@ public class Main extends Application {
         Draggable.setDraggable(garageScreen);
 
         GeneralButton backbutton = new GeneralButton(0, 0, "Back", e -> thewindow.setScene(chooseScene), true);
-//        backbutton.setSize(80, 30);
         Button bb = backbutton.getButton();
-//        bb.setTranslateX(290);
         bb.setTranslateX(230);
         bb.setTranslateY(-1);
 

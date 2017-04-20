@@ -30,7 +30,7 @@ public class BarGraph {
         final BarChart<String,Number> barGraph =
                 new BarChart<String,Number>(xAxis,yAxis);
         barGraph.setTitle("Percentage of car thefts victems");
-        xAxis.setLabel("City District");
+        xAxis.setLabel("City district");
         yAxis.setLabel("Percentage");
 
         //Loop door de HashMap en vul de chart;
