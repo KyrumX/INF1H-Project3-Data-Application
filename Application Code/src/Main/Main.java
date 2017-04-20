@@ -1,7 +1,6 @@
 package Main;
 
 import Database.ConnectDatabase;
-import Buttons.AbstractButtonClass;
 import Buttons.GeneralButton;
 import Effects.FadeEffect;
 import Effects.ScaleEffect;
@@ -23,13 +22,11 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -130,7 +127,7 @@ public class Main extends Application {
         creditslabel.setMaxWidth(400);
         creditslabel.setStyle("-fx-font-size: 15; -fx-font-family: Helvetica-neue");
         creditslabel.setTranslateX(10);
-        creditslabel.setText("Aaron Beetstra: Development Team\n - Graph code, connection with the database, uml diagrams.\n Ralph Verburg: Development Team\n - Menu code, buttons code, basic scene building.\n Mark Stout: Development team\n - Create Database, SQL, UML diagram.\n Selim Aydi: Development Team\n - CSS, styling, effects code, tools code.\n Ryan Wilson: Scrum Master\n - Scrum tasks, CSV parser, ERD and RM diagram.");
+        creditslabel.setText("Aaron Beetstra: Development Team\n - Graph code, connection with the database, uml diagrams.\n Ralph Verburg: Development Team\n - Menu code, buttons code, basic scene building.\n Mark Stout: Development team\n - Create Database, SQL, UML diagram.\n Selim Aydi: Development Team\n - CSS, styling, effects code, tools code, bug fixing.\n Ryan Wilson: Scrum Master\n - Scrum tasks, CSV parser, ERD and RM diagram.");
 
         GeneralScreen credits = new GeneralScreen();
         BorderPane creditsScreen = credits.getbPane();
@@ -156,15 +153,29 @@ public class Main extends Application {
         /*********************
          *   Diefstal Graph  *
          ********************/
+        Label thefttitle = new Label();
+        thefttitle.setEffect(new Shadoweffect(0.5).getShadow());
+        thefttitle.setText("Choose an option above");
+        thefttitle.setTranslateY(-180);
+        Label theftlabel = new Label();
+        theftlabel.setTranslateY(18);
+        theftlabel.setWrapText(true);
+        theftlabel.setMaxWidth(400);
+        theftlabel.setStyle("-fx-font-size: 15; -fx-font-family: Helvetica-neue");
+        theftlabel.setTranslateX(10);
+        theftlabel.setText("You can choose between car theft data from either 2009 or 2011");
 
         GeneralScreen ct = new GeneralScreen();
         BorderPane cartheftScreen = ct.getbPane();
-        cartheftScene = new Scene(new Group(cartheftScreen));
+        StackPane cartheftpane = ct.getsPane();
+        cartheftpane.getChildren().addAll(thefttitle, theftlabel);
         cartheftScreen.setMinSize(720, 540);
 
         ToolBar menubarCartheft = ct.getTBar();
 
         cartheftScreen.setTop(menubarCartheft);
+        cartheftScreen.setCenter(cartheftpane);
+        cartheftScene = new Scene(new Group(cartheftScreen));
 
         final ObservableList<Node> childerenCarTheft = ((Group) cartheftScene.getRoot()).getChildren();
 
@@ -184,7 +195,7 @@ public class Main extends Application {
             cartheftScreen.setCenter(diefstal2011);
         }, false);
 
-        menubarCartheft.getItems().addAll(new Icon(), new GeneralButton(0, 0, "Back", e -> {thewindow.setScene(chooseScene); cartheftScreen.setCenter(null);}, true).getButton(), cartheftButton1.getButton(), cartheftButton2.getButton(), new WindowToolBar().getAligner(), new MinimizeButton(true), new CloseButton(true));
+        menubarCartheft.getItems().addAll(new Icon(), new GeneralButton(0, 0, "Back", e -> {thewindow.setScene(chooseScene); cartheftScreen.setCenter(cartheftpane);}, true).getButton(), cartheftButton1.getButton(), cartheftButton2.getButton(), new WindowToolBar().getAligner(), new MinimizeButton(true), new CloseButton(true));
 
         /***************************
          *      Choose Screen      *

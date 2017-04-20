@@ -11,7 +11,7 @@ import java.io.IOException;
 public class CSVReader {
     public static void main(String[] args) {
 
-        String csvFile = "C:/Users/Aaron/Downloads/parking.csv";
+        String csvFile = "C:/Users/Selim/Desktop/umlstuff/parking.csv";
         BufferedReader br = null;
         String line = "";
 
@@ -23,7 +23,6 @@ public class CSVReader {
             br = new BufferedReader(new FileReader(csvFile));
             br.readLine();
             while ((line = br.readLine()) != null) {
-
                 String[] lineSplitter = line.split(cvsSplitBy);
 
                 //Pak het vierde en vijfde item van elke regel, de naam van de garage en de code
